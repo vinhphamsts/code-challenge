@@ -17,7 +17,7 @@ function App() {
 		<GlobalStyles/>
 		<Heading>CODE CHALLENGE</Heading>
 		<Landing/>
-		<Loading isLoading={false}/>
+		<Loading/>
 	</Container>);
 }
 
