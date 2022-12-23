@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getASubmission } from '../store/reducer.js';
+import { getASubmission, getLoading } from '../store/reducer.js';
 import { errorTextColor, mainTextColor } from '../styles/colors.js';
 
 const Container = styled.div`
@@ -29,9 +29,11 @@ export const ChallengeOutput = () => {
 		let timeoutId;
 
 		if (execution.token) {
+			dispatch(getLoading.success(true));
 			timeoutId = setTimeout(() => {
 				dispatch(getASubmission.start(execution.token));
-			}, 2000);
+				dispatch(getLoading.success(false))
+			}, 1000);
 		}
 
 		return () => clearTimeout(timeoutId);

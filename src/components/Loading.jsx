@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const Overlay = styled.div`
   position: fixed;
@@ -6,7 +7,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +29,10 @@ const Image = styled.img`
   animation: ${rotate} 600ms infinite linear;
 `
 
-export const Loading = ({ isLoading }) => isLoading ? (<Overlay>
-	<Image src="/code.svg" alt="Loading ..."/>
-</Overlay>) : null;
+export const Loading = () => {
+	const loading = useSelector(state => state.getLoading.success.value);
+
+	return loading ? (<Overlay>
+		<Image src="/code.svg" alt="Loading ..."/>
+	</Overlay>) : null;
+}

@@ -1,16 +1,10 @@
-import { createReducer, createAction } from '@reduxjs/toolkit';
-
-function createActionSuite(type) {
-	return {
-		start: createAction(`${type}/start`),
-		success: createAction(`${type}/success`),
-		error: createAction(`${type}/error`),
-	};
-}
+import { createReducer } from '@reduxjs/toolkit';
+import { createActionSuite } from './utils.js';
 
 export const fetchLanguages = createActionSuite('fetch_languages');
 export const executeCode = createActionSuite('execute_code');
 export const getASubmission = createActionSuite('get_a_submission');
+export const getLoading = createActionSuite('get_loading');
 
 const initialState = {
 	fetchLanguages: {
@@ -19,6 +13,10 @@ const initialState = {
 		success: {}, error: null,
 	}, executionCode: {
 		success: {}, error: null,
+	}, getLoading: {
+		success: {
+			value: false,
+		}, error: null,
 	},
 };
 
@@ -37,7 +35,11 @@ const codeReducer = createReducer(initialState, builder => {
 		})
 		.addCase(getASubmission.error, (state, action) => {
 			state.getASubmission.error = action.payload;
-		});
+		})
+		.addCase(getLoading.success, (state, action) => {
+			state.getLoading.success.value = action.payload;
+		})
+	;
 });
 
 export default codeReducer;
