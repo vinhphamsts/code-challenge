@@ -20,7 +20,7 @@ function* executeCodeWorker(action) {
 		const result = yield call(createSubmissionsApi, action.payload);
 		yield put(executeCode.success(result));
 	} catch (e) {
-		console.error(e.message);
+		yield put(executeCode.error(e.message))
 	}
 }
 
@@ -29,7 +29,7 @@ function* getASubmissionWorker(action) {
 		const result = yield call(getASubmissionApi, action.payload);
 		yield put(getASubmission.success(result));
 	} catch (e) {
-		console.error(e.message);
+		yield put(getASubmission.error(e.message))
 	}
 }
 

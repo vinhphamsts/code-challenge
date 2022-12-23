@@ -12,7 +12,7 @@ const METHODS = {
 
 const createSimpleRequest = method => url => async data => await axios[method](url, data)
 		.then(response => response.data)
-		.catch(e => e.message);
+		.catch(e => e.response.data);
 
 export const getLanguagesApi = createSimpleRequest(METHODS.GET)(LANG_URL);
 
@@ -21,4 +21,4 @@ export const createSubmissionsApi = createSimpleRequest(METHODS.POST)(SUBMISSION
 export const getASubmissionApi = async token => await axios
 	.get(`${SUBMISSION_URL}/${token}`)
 	.then(response => response.data)
-	.catch(error => error.message);
+	.catch(error => error.response.data);

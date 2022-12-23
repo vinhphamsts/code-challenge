@@ -10,7 +10,12 @@ const initialState = {
 	fetchLanguages: {
 		success: [], error: null,
 	}, getASubmission: {
-		success: {}, error: null,
+		success: {
+			status: {
+				id: null,
+				description: '',
+			}
+		}, error: null,
 	}, executionCode: {
 		success: {}, error: null,
 	}, getLoading: {

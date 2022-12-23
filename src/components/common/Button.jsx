@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DISABLED_COLOR, MAIN_COLOR } from '../../styles/colors.js';
 
 const Container = styled.button`
   padding: 8px 24px;
@@ -9,6 +10,7 @@ const Container = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+	background-color: ${MAIN_COLOR};
 
   &:hover {
     cursor: pointer;
@@ -16,6 +18,8 @@ const Container = styled.button`
 
   &[disabled] {
     cursor: default;
+	  background-color: ${DISABLED_COLOR};
+	  color: #000000;
   }
 `;
 

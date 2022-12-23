@@ -23,7 +23,7 @@ export const CodeEditorWindow = ({onChange, languageName, code}) => {
 	return (
 		<Container>
 			<Editor
-				height={`80vh`}
+				height={`60vh`}
 				defaultLanguage={'javascript'}
 				language={languageName}
 				value={value}

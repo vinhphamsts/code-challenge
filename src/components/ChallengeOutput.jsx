@@ -7,7 +7,6 @@ import { errorTextColor, mainTextColor } from '../styles/colors.js';
 const Container = styled.div`
   display: flex;
   width: 100%;
-  border-radius: 4px;
 `;
 
 const Error = styled.p`
@@ -23,7 +22,8 @@ const Output = styled.p`
 export const ChallengeOutput = () => {
 	const dispatch = useDispatch();
 	const execution = useSelector(state => state.executionCode.success);
-	const submissionVal = useSelector(state => state.getASubmission.success);
+	const submissionVal = useSelector(state => state.getASubmission);
+	const { status, compile_output, stderr, stdout, error } = submissionVal.success;
 
 	useEffect(() => {
 		let timeoutId;
@@ -38,8 +38,11 @@ export const ChallengeOutput = () => {
 
 		return () => clearTimeout(timeoutId);
 	}, [execution.token]);
-	const errorMessage = submissionVal.compile_output || submissionVal.stderr;
+
+	const errorMessage = compile_output || stderr || error;
+
 	return (<Container>
-			{errorMessage ? (<Error>{errorMessage}</Error>) : (<Output>{submissionVal.stdout}</Output>)}
+		{status?.id !== 3 && <Error>{errorMessage}</Error>}
+		{status?.id === 3 && (<Output>{stdout}</Output>)}
 		</Container>);
 };
