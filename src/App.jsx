@@ -6,9 +6,13 @@ import GlobalStyles from './styles/globalStyles.js';
 
 const Container = styled.div`
   display: flex;
-  padding: 24px;
   flex-direction: column;
   justify-content: center;
+	padding: 8px;
+	
+	@media screen and (min-width: 768px) {
+  	padding: 24px;
+	}
 `;
 
 function App() {

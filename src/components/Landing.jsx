@@ -69,7 +69,7 @@ export const Landing = () => {
 	const handleExecuteCode = (evt) => {
 		evt.preventDefault();
 		const data = {
-			source_code: `${code}`, language_id: languageId,
+			source_code: `${code}`, language_id: languageId, time: 2,
 		};
 
 		dispatch(executeCode.start(data));

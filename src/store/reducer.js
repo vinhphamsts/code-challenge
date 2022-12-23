@@ -32,7 +32,7 @@ const codeReducer = createReducer(initialState, builder => {
 		})
 		.addCase(fetchLanguages.success, (state, action) => {
 			state.fetchLanguages.success = action.payload.map(item => ({
-				...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase(),
+				...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase()
 			}));
 		})
 		.addCase(getASubmission.success, (state, action) => {
