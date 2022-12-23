@@ -1,17 +1,16 @@
-// LanguagesDropdown.js
+import React from 'react';
+import Select from 'react-select';
 
-import React from "react";
-import Select from "react-select";
-
-export const LanguagesDropdown = ({ onSelectChange }) => {
-    return (
-        <Select
-            placeholder={`Filter By Category`}
-            // options={languageOptions}
-            // styles={customStyles}
-            // defaultValue={languageOptions[0]}
-            onChange={(selectedOption) => onSelectChange(selectedOption)}
-        />
-    );
+export const LanguagesDropdown = ({onSelectChange, languageOptions}) => {
+	return (
+		<Select
+			className="basic-single"
+			placeholder="Select language. Default is javascript"
+			options={languageOptions}
+			// styles={customStyles}
+			defaultValue="javascript"
+			onChange={(selectedOption) => onSelectChange(selectedOption.languageId, selectedOption.label)}
+		/>
+	);
 };
 
