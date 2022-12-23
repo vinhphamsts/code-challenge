@@ -1,7 +1,5 @@
 import {
-	fetchLanguages,
-	executeCode,
-	getASubmission,
+	fetchLanguages, executeCode, getASubmission,
 } from './reducer.js';
 import { getLanguagesApi, createSubmissionsApi, getASubmissionApi } from '../api/judge0.js';
 
@@ -29,9 +27,9 @@ function* executeCodeWorker(action) {
 function* getASubmissionWorker(action) {
 	try {
 		const result = yield call(getASubmissionApi, action.payload);
-		yield put(getASubmission.success(result))
+		yield put(getASubmission.success(result));
 	} catch (e) {
-		console.error(e.message)
+		console.error(e.message);
 	}
 }
 
@@ -45,13 +43,9 @@ function* executeCodeWatcher() {
 }
 
 function* getASubmissionWatcher() {
-	yield takeLatest(getASubmission.start.toString(), getASubmissionWorker)
+	yield takeLatest(getASubmission.start.toString(), getASubmissionWorker);
 }
 
 export default function* () {
-	yield all([
-		fetchLanguagesWatcher(),
-		executeCodeWatcher(),
-		getASubmissionWatcher(),
-	]);
+	yield all([fetchLanguagesWatcher(), executeCodeWatcher(), getASubmissionWatcher()]);
 }

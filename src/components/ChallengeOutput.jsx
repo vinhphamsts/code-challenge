@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getASubmission } from '../store/reducer.js';
-import { errorTextColor, MAIN_COLOR, mainTextColor } from '../styles/colors.js';
+import { errorTextColor, mainTextColor } from '../styles/colors.js';
 
 const Container = styled.div`
   display: flex;
   width: 100%;
-  border: 1px solid ${MAIN_COLOR};
-	border-radius: 4px;
+  border-radius: 4px;
 `;
 
 const Error = styled.p`
@@ -38,13 +37,7 @@ export const ChallengeOutput = () => {
 		return () => clearTimeout(timeoutId);
 	}, [execution.token]);
 	const errorMessage = submissionVal.compile_output || submissionVal.stderr;
-	return (
-		<Container>
-			{errorMessage ? (
-				<Error>{errorMessage}</Error>
-			) : (
-				<Output>Output: {submissionVal.stdout}</Output>
-			)}
-		</Container>
-	);
+	return (<Container>
+			{errorMessage ? (<Error>{errorMessage}</Error>) : (<Output>{submissionVal.stdout}</Output>)}
+		</Container>);
 };

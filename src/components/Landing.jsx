@@ -7,27 +7,32 @@ import { ChallengeOutput } from './ChallengeOutput.jsx';
 import { CodeEditorWindow } from './CodeEditorWindow.jsx';
 import { executeCode, fetchLanguages } from '../store/reducer.js';
 import { Button } from './common/Button.jsx';
-import { LIGHT_COLOR } from '../styles/colors.js';
+import { ControlBar } from './common/ControlBar';
 
 const Container = styled.div`
   display: grid;
-  grid-template: 1fr / 0.3fr 0.4fr 0.3fr;
+  grid-template: 1fr / 0.4fr 0.5fr;
   gap: 16px;
   padding: 16px;
-  border-radius: 8px;
-  border: 1px solid ${LIGHT_COLOR};
 `;
+
+const ControlDisplay = styled.div`
+	display: flex;
+	flex-direction: column;
+`
 
 const EditorWrapper = styled.div`
   display: grid;
   grid-template: auto auto / 1fr;
+	justify-content: center;
   gap: 8px;
 `;
 
 const Code = styled.div`
   display: flex;
+	width: 100%;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 16px;
 `;
 
@@ -40,9 +45,10 @@ export const Landing = () => {
 	const languages = useSelector(state => state.fetchLanguages.success);
 	const dispatch = useDispatch();
 
-	const [languageLabel, setLanguageLabel] = useState('javascript');
+	const [languageName, setLanguageName] = useState('Javascript');
 	const [languageId, setLanguageId] = useState(63);
 	const [code, setCode] = useState('');
+	const [controlIndex, setControlIndex] = useState(0);
 
 	useEffect(() => {
 		dispatch(fetchLanguages.start());
@@ -60,25 +66,40 @@ export const Landing = () => {
 		dispatch(executeCode.start(data))
 	};
 
-	const handleChangeLanguages = (id, label) => {
-		setLanguageId(id);
-		setLanguageLabel(label);
+	const handleChangeLanguages = ({ languageId, name }) => {
+		setLanguageId(languageId);
+		setLanguageName(name);
 	};
+
+	const handleControlIndex = (index) => {
+		setControlIndex(index)
+		console.log('indexx....', index);
+	}
 
 	return (
 		<Container>
-			<ChallengeDescription description="Write add function"/>
+			<ControlDisplay>
+				<ControlBar onSelect={handleControlIndex} active={controlIndex} />
+				{controlIndex === 0 && (
+					<ChallengeDescription>
+						Write a function that add all the input number regardless to the number of input. For example: add(1, 2) -> 3;
+						add(1, 2, 3, 4, 5) -> 15; ...
+					</ChallengeDescription>
+				)}
+				{controlIndex === 1 && (
+					<ChallengeOutput/>
+				)}
+			</ControlDisplay>
 			<EditorWrapper>
 				<LanguagesDropdown languageOptions={languages} onSelectChange={handleChangeLanguages}/>
 				<Code>
-					<CodeEditorWindow onChange={handleCodeChange} languageLabel={languageLabel}/>
+					<CodeEditorWindow onChange={handleCodeChange} languageName={languageName}/>
 					<Actions onSubmit={handleExecuteCode}>
 						<Button type="submit" label="Execute"/>
 						<Button type="button" disabled label="Submit"/>
 					</Actions>
 				</Code>
 			</EditorWrapper>
-			<ChallengeOutput/>
 		</Container>
 	);
 };

@@ -1,14 +1,23 @@
 import styled from 'styled-components';
-import { LIGHT_COLOR } from '../styles/colors.js';
+import { Title } from '../styles/typography.js';
 
 const Container = styled.div`
-	display: flex;
-	width: 100%;
-	border: 1px solid ${LIGHT_COLOR};
-	border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 4px;
 `;
-export const ChallengeDescription = ({ description }) => {
+
+const Paragraph = styled.p`
+  font-size: 13px;
+`;
+export const ChallengeDescription = ({ children }) => {
 	return (
-		<Container>{description}</Container>
+		<Container>
+			<Title>Instruction</Title>
+			<Paragraph>
+				{children}
+			</Paragraph>
+		</Container>
 	);
-}
+};

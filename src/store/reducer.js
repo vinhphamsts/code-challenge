@@ -14,16 +14,11 @@ export const getASubmission = createActionSuite('get_a_submission');
 
 const initialState = {
 	fetchLanguages: {
-		success: [],
-		error: null,
-	},
-	getASubmission: {
-		success: {},
-		error: null,
-	},
-	executionCode: {
-		success: {},
-		error: null,
+		success: [], error: null,
+	}, getASubmission: {
+		success: {}, error: null,
+	}, executionCode: {
+		success: {}, error: null,
 	},
 };
 
@@ -34,9 +29,7 @@ const codeReducer = createReducer(initialState, builder => {
 		})
 		.addCase(fetchLanguages.success, (state, action) => {
 			state.fetchLanguages.success = action.payload.map(item => ({
-				...item,
-				languageId: item.id,
-				label: item.name.split(/\s+/)[0].toLowerCase(),
+				...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase(),
 			}));
 		})
 		.addCase(getASubmission.success, (state, action) => {
@@ -44,8 +37,7 @@ const codeReducer = createReducer(initialState, builder => {
 		})
 		.addCase(getASubmission.error, (state, action) => {
 			state.getASubmission.error = action.payload;
-		})
-	;
+		});
 });
 
 export default codeReducer;
