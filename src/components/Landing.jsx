@@ -11,26 +11,32 @@ import { ControlBar } from './common/ControlBar';
 
 const Container = styled.div`
   display: grid;
-  grid-template: 1fr / 0.4fr 0.5fr;
   gap: 16px;
   padding: 16px;
+	
+	@media screen and (min-width: 768px) {
+    display: grid;
+    grid-template: 1fr / 0.4fr 0.6fr;
+    gap: 16px;
+    padding: 16px;
+	}
 `;
 
 const ControlDisplay = styled.div`
-	display: flex;
-	flex-direction: column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 
 const EditorWrapper = styled.div`
   display: grid;
   grid-template: auto auto / 1fr;
-	justify-content: center;
+  justify-content: center;
   gap: 8px;
 `;
 
 const Code = styled.div`
   display: flex;
-	width: 100%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   gap: 16px;
@@ -59,11 +65,11 @@ export const Landing = () => {
 	const handleExecuteCode = (evt) => {
 		evt.preventDefault();
 		const data = {
-			source_code: `${code}`,
-			language_id: languageId,
+			source_code: `${code}`, language_id: languageId,
 		};
 
-		dispatch(executeCode.start(data))
+		dispatch(executeCode.start(data));
+		setControlIndex(1);
 	};
 
 	const handleChangeLanguages = ({ languageId, name }) => {
@@ -72,34 +78,30 @@ export const Landing = () => {
 	};
 
 	const handleControlIndex = (index) => {
-		setControlIndex(index)
-		console.log('indexx....', index);
-	}
+		setControlIndex(index);
+	};
 
-	return (
-		<Container>
+	const enableExecution = code.length > 10;
+
+	return (<Container>
 			<ControlDisplay>
-				<ControlBar onSelect={handleControlIndex} active={controlIndex} />
-				{controlIndex === 0 && (
-					<ChallengeDescription>
-						Write a function that add all the input number regardless to the number of input. For example: add(1, 2) -> 3;
+				<ControlBar onSelect={handleControlIndex} active={controlIndex}/>
+				{controlIndex === 0 && (<ChallengeDescription>
+						Write a function that add all the input number regardless to the number of input. For example: add(1, 2) ->
+						3;
 						add(1, 2, 3, 4, 5) -> 15; ...
-					</ChallengeDescription>
-				)}
-				{controlIndex === 1 && (
-					<ChallengeOutput/>
-				)}
+					</ChallengeDescription>)}
+				{controlIndex === 1 && (<ChallengeOutput/>)}
 			</ControlDisplay>
 			<EditorWrapper>
 				<LanguagesDropdown languageOptions={languages} onSelectChange={handleChangeLanguages}/>
 				<Code>
 					<CodeEditorWindow onChange={handleCodeChange} languageName={languageName}/>
 					<Actions onSubmit={handleExecuteCode}>
-						<Button type="submit" label="Execute"/>
+						<Button type="submit" label="Execute" disabled={!enableExecution}/>
 						<Button type="button" disabled label="Submit"/>
 					</Actions>
 				</Code>
 			</EditorWrapper>
-		</Container>
-	);
+		</Container>);
 };

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { LIGHT_COLOR } from '../../styles/colors.js';
+import { LIGHT_COLOR, MAIN_COLOR } from '../../styles/colors.js';
 import { nanoid } from '@reduxjs/toolkit';
 
 const Container = styled.div`
   display: grid;
-  grid-template: 54px / 0.5fr 0.5fr;
+  grid-template: 38px / 0.5fr 0.5fr;
 `;
 
 const Tab = styled.button`
-  background: ${({ active }) => active ? '#22255f' : 'none'};
+  background: ${({ active }) => active ? MAIN_COLOR : 'none'};
   border: none;
-  border-bottom: 2px solid #22255f;
+  border-bottom: 2px solid ${MAIN_COLOR};
   color: ${LIGHT_COLOR};
   font-weight: bold;
   border-top-left-radius: 5px;

@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 export const MAIN_COLOR = '#646cff';
-export const LIGHT_COLOR = 'deepskyblue';
+export const LIGHT_COLOR = '#ffffff';
 export const ERROR_COLOR = 'crimson';
 export const mainTextColor = css`
   color: ${MAIN_COLOR};

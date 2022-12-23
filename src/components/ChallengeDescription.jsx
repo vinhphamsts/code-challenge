@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Title } from '../styles/typography.js';
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +13,6 @@ const Paragraph = styled.p`
 export const ChallengeDescription = ({ children }) => {
 	return (
 		<Container>
-			<Title>Instruction</Title>
 			<Paragraph>
 				{children}
 			</Paragraph>
