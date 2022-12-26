@@ -7,6 +7,7 @@ export const batchSubmission = createActionSuite('batch_submission');
 export const getASubmission = createActionSuite('get_a_submission');
 export const getBatchSubmission = createActionSuite('get_batch_submission');
 export const getLoading = createActionSuite('get_loading');
+export const resetSubmissions = createActionSuite('reset_submissions');
 
 const initialASubmission = {
 	status: {
@@ -15,29 +16,39 @@ const initialASubmission = {
 	},
 	error: null,
 };
+
+const initialBatchSubmission = {
+	success: null,
+	error: null,
+}
 const initialState = {
+	getLoading: {
+		success: {
+			value: false,
+		}, error: null,
+	},
 	fetchLanguages: {
 		success: [], error: null,
-	}, getASubmission: {
+	},
+	executionCode: {
+		success: {}, error: null,
+	},
+	batchSubmission: {
+		success: null,
+		error: null,
+	},
+	getASubmission: {
 		success: {
 			status: {
 				id: null,
 				description: '',
 			},
 		}, error: null,
-	}, executionCode: {
-		success: {}, error: null,
-	}, getLoading: {
-		success: {
-			value: false,
-		}, error: null,
-	}, batchSubmission: {
-		success: null,
-		error: null,
-	}, getBatchSubmission: {
-		success: null,
-		error: null,
 	},
+	getBatchSubmission: {
+		success: null,
+		error: null,
+	}
 };
 
 const reducer = createReducer(initialState, builder => {
@@ -67,6 +78,10 @@ const reducer = createReducer(initialState, builder => {
 		})
 		.addCase(getBatchSubmission.success, (state, action) => {
 			state.getBatchSubmission.success = action.payload?.submissions;
+		})
+		.addCase(resetSubmissions.success, (state) => {
+			state.getBatchSubmission = initialBatchSubmission;
+			state.getASubmission.success = initialASubmission;
 		})
 	;
 });

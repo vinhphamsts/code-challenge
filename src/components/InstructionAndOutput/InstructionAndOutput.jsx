@@ -1,9 +1,9 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ChallengeDescription from './Instruction.jsx';
 import ChallengeOutput from './CodeOutput.jsx';
 import ControlBar from '../common/ControlBar.jsx';
-import { CONTROL_INDEX } from '../../constants/common.js';
+import { CONTROL_TAB_INDEX } from '../../constants/common.js';
 import Batch from '../TestBatch/Batch';
 import TestBatch from '../../data/data.json';
 import { BatchControl } from '../TestBatch/BatchControl';
@@ -19,26 +19,30 @@ const Display = styled.div`
 `;
 
 const InstructionAndOutput = ({ batchOrder = 0, onBatchChange }) => {
-	const [controlIndex, setControlIndex] = useState(CONTROL_INDEX.INPUT);
+	const [controlIndex, setControlTabIndex] = useState(CONTROL_TAB_INDEX.INSTRUCTIONS);
 
-	const handleControlIndex = useCallback((index) => {
-		setControlIndex(index);
+	const handleControlTabChange = useCallback((index) => {
+		setControlTabIndex(index);
 	}, []);
+
+	useEffect(() => {
+		setControlTabIndex(CONTROL_TAB_INDEX.INSTRUCTIONS)
+	}, [batchOrder]);
 
 	return (
 		<ControlDisplay>
 			<BatchControl onBatchChange={onBatchChange}/>
-			<ControlBar onSelect={handleControlIndex} active={controlIndex}/>
-			<Display visible={controlIndex === CONTROL_INDEX.INPUT}>
+			<ControlBar onSelect={handleControlTabChange} active={controlIndex}/>
+			<Display visible={controlIndex === CONTROL_TAB_INDEX.INSTRUCTIONS}>
 				<ChallengeDescription>
 					{TestBatch[batchOrder].description}
 				</ChallengeDescription>
 			</Display>
-			<Display visible={controlIndex === CONTROL_INDEX.OUTPUT}>
-				<ChallengeOutput onChangeTab={handleControlIndex}/>
+			<Display visible={controlIndex === CONTROL_TAB_INDEX.OUTPUT}>
+				<ChallengeOutput onChangeTab={handleControlTabChange}/>
 			</Display>
-			<Display visible={controlIndex === CONTROL_INDEX.TEST}>
-				<Batch onChangeTab={handleControlIndex} batchOrder={batchOrder}/>
+			<Display visible={controlIndex === CONTROL_TAB_INDEX.TEST}>
+				<Batch onChangeTab={handleControlTabChange} batchOrder={batchOrder}/>
 			</Display>
 		</ControlDisplay>
 	);

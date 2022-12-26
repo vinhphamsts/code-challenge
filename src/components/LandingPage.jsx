@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import InstructionAndOutput from './InstructionAndOutput/InstructionAndOutput.jsx';
 import CodeEditor from './Editor/CodeEditor';
 import TestBatch from '../data/data.json';
+import { useDispatch } from 'react-redux';
+import { resetSubmissions } from '../store/reducer.js';
 
 const Container = styled.div`
   display: grid;
@@ -18,10 +20,13 @@ const Container = styled.div`
 `;
 
 export const LandingPage = () => {
+	const dispatch = useDispatch();
 	const batchLen = TestBatch.length;
 	const [batchOrder, setBatchOrder] = useState(0);
 
 	const handleBatchChange = useCallback(value => () => {
+		dispatch(resetSubmissions.success());
+
 		setBatchOrder(order => {
 			if (value < 0 && order === 0 || value > 0 && order === batchLen - 1) {
 				return order;
@@ -33,7 +38,7 @@ export const LandingPage = () => {
 
 	return (
 		<Container>
-			<InstructionAndOutput batchOrder={batchOrder} onBatchChange={handleBatchChange}/>
+			<InstructionAndOutput batchOrder={batchOrder} onBatchChange={handleBatchChange} />
 			<CodeEditor batchOrder={batchOrder}/>
 		</Container>
 	);

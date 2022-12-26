@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getASubmission, getLoading } from '../../store/reducer.js';
 import { errorTextColor, mainTextColor } from '../../styles/colors.js';
-import { CONTROL_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
+import { CONTROL_TAB_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 
 const Container = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ const CodeOutput = ({ onChangeTab }) => {
 			timeoutId = setTimeout(() => {
 				dispatch(getASubmission.start(execution.token));
 				dispatch(getLoading.success(false));
-				onChangeTab(CONTROL_INDEX.OUTPUT);
+				onChangeTab(CONTROL_TAB_INDEX.OUTPUT);
 			}, SUBMISSIONS_TIMEOUT.SINGLE);
 		}
 

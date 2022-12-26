@@ -3,7 +3,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBatchSubmission, getLoading } from '../../store/reducer.js';
-import { CONTROL_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
+import { CONTROL_TAB_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 import { ERROR_COLOR, errorTextColor, mainTextColor, PASSED_COLOR } from '../../styles/colors.js';
 import TestBatch from '../../data/data.json';
 
@@ -65,7 +65,7 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 			timeoutId = setTimeout(() => {
 				dispatch(getBatchSubmission.start(batchTokens));
 				dispatch(getLoading.success(false));
-				onChangeTab(CONTROL_INDEX.TEST);
+				onChangeTab(CONTROL_TAB_INDEX.TEST);
 			}, SUBMISSIONS_TIMEOUT.BATCH);
 		}
 
