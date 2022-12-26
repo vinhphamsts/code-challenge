@@ -1,5 +1,5 @@
-export const CONTROL_INDEX = {
-	INPUT: 0,
+export const CONTROL_TAB_INDEX = {
+	INSTRUCTIONS: 0,
 	OUTPUT: 1,
 	TEST: 2,
 };
