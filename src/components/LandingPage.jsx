@@ -1,6 +1,8 @@
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import InstructionAndOutput from './InstructionAndOutput/InstructionAndOutput.jsx';
 import CodeEditor from './Editor/CodeEditor';
+import TestBatch from '../data/data.json';
 
 const Container = styled.div`
   display: grid;
@@ -15,9 +17,24 @@ const Container = styled.div`
   }
 `;
 
-export const LandingPage = () => (
-	<Container>
-		<InstructionAndOutput/>
-		<CodeEditor />
-	</Container>
-);
+export const LandingPage = () => {
+	const batchLen = TestBatch.length;
+	const [batchOrder, setBatchOrder] = useState(0);
+
+	const handleBatchChange = useCallback(value => () => {
+		setBatchOrder(order => {
+			if (value < 0 && order === 0 || value > 0 && order === batchLen - 1) {
+				return order;
+			}
+
+			return order + value;
+		});
+	}, []);
+
+	return (
+		<Container>
+			<InstructionAndOutput batchOrder={batchOrder} onBatchChange={handleBatchChange}/>
+			<CodeEditor batchOrder={batchOrder}/>
+		</Container>
+	);
+};

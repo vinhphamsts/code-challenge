@@ -8,11 +8,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-	padding: 8px;
-	
-	@media screen and (min-width: 768px) {
-  	padding: 24px;
-	}
+  padding: 8px;
+
+  @media screen and (min-width: 768px) {
+    padding: 24px;
+  }
 `;
 
 function App() {

@@ -3,7 +3,7 @@ import { createActionSuite } from './utils.js';
 
 export const fetchLanguages = createActionSuite('fetch_languages');
 export const executeCode = createActionSuite('execute_code');
-export const batchSubmission = createActionSuite('batch_submission')
+export const batchSubmission = createActionSuite('batch_submission');
 export const getASubmission = createActionSuite('get_a_submission');
 export const getBatchSubmission = createActionSuite('get_batch_submission');
 export const getLoading = createActionSuite('get_loading');
@@ -14,7 +14,7 @@ const initialASubmission = {
 		description: '',
 	},
 	error: null,
-}
+};
 const initialState = {
 	fetchLanguages: {
 		success: [], error: null,
@@ -23,7 +23,7 @@ const initialState = {
 			status: {
 				id: null,
 				description: '',
-			}
+			},
 		}, error: null,
 	}, executionCode: {
 		success: {}, error: null,
@@ -33,7 +33,7 @@ const initialState = {
 		}, error: null,
 	}, batchSubmission: {
 		success: null,
-		error: null
+		error: null,
 	}, getBatchSubmission: {
 		success: null,
 		error: null,
@@ -47,7 +47,7 @@ const reducer = createReducer(initialState, builder => {
 		})
 		.addCase(fetchLanguages.success, (state, action) => {
 			state.fetchLanguages.success = action.payload.map(item => ({
-				...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase()
+				...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase(),
 			}));
 		})
 		.addCase(getASubmission.success, (state, action) => {

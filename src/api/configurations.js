@@ -16,7 +16,7 @@ export const createRequest = method => (url, type) => async data => {
 			reqUrl = `${url}/${data}`;
 			break;
 		case SUBMISSIONS_TYPE.BATCH:
-			reqUrl = `${url}/?tokens=${data}`
+			reqUrl = `${url}/?tokens=${data}`;
 			break;
 		default:
 			reqUrl = url;
@@ -25,6 +25,6 @@ export const createRequest = method => (url, type) => async data => {
 	return await instanceAxios[method](reqUrl, data)
 		.then(response => response.data)
 		.catch(e => e.response.data);
-}
+};
 
 export default instanceAxios;

@@ -13,7 +13,7 @@ const EditorWrapper = styled.div`
   display: grid;
   grid-template: min-content auto / 1fr;
   justify-content: center;
-	align-items: flex-start;
+  align-items: flex-start;
   gap: 8px;
 `;
 
@@ -32,10 +32,10 @@ const Actions = styled.form`
   gap: 16px;
 `;
 
-const CodeEditor = () => {
+const CodeEditor = ({ batchOrder = 0 }) => {
 	const languages = useSelector(state => state.fetchLanguages.success);
 	const dispatch = useDispatch();
-	const [testBatch, setTestBatch] = useState(TestBatch[0]);
+	const [testBatch, setTestBatch] = useState(TestBatch[batchOrder]);
 
 	const [languageName, setLanguageName] = useState('Javascript');
 	const [languageId, setLanguageId] = useState(63);
@@ -44,6 +44,10 @@ const CodeEditor = () => {
 	useEffect(() => {
 		dispatch(fetchLanguages.start());
 	}, []);
+
+	useEffect(() => {
+		setTestBatch(() => TestBatch[batchOrder]);
+	}, [batchOrder]);
 
 	const handleCodeChange = useCallback((code) => {
 		setCode(code);

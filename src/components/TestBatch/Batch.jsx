@@ -13,29 +13,29 @@ const Error = styled.p`
 `;
 
 const Output = styled.p`
-	margin: 0;
+  margin: 0;
   ${mainTextColor};
-	font-size: 12px;
-	
-	&:first-letter {
-		text-transform: uppercase;
-	}
+  font-size: 12px;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 const BatchOutput = styled.div`
   display: flex;
   flex-direction: column;
-	padding: 24px 0;
+  padding: 24px 0;
   width: 100%;
 `;
 
 const Passed = styled.span`
-	font-weight: bold;
-	color: ${PASSED_COLOR};
+  font-weight: bold;
+  color: ${PASSED_COLOR};
 `;
 
 const Failed = styled(Passed)`
-	color: ${ERROR_COLOR};
+  color: ${ERROR_COLOR};
 `;
 
 const Batch = ({ onChangeTab, batchOrder = 0 }) => {
@@ -53,6 +53,10 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 			stderr: test.stderr,
 		}))
 		: [];
+
+	useEffect(() => {
+		setTestBatch(() => TestBatch[batchOrder]);
+	}, [batchOrder]);
 
 	useEffect(() => {
 		let timeoutId;
@@ -76,8 +80,8 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 				if ([3].includes(result.statusId)) {
 					return (
 						<Output key={nanoid()}>
-							{index+1}: {testSuite[index].name}: {result.stdout == 'true\n'
-							?	<Passed>Passed</Passed>
+							{index + 1}: {testSuite[index].name}: {result.stdout == 'true\n'
+							? <Passed>Passed</Passed>
 							: <Failed>Failed</Failed>}
 						</Output>);
 				}
@@ -90,6 +94,6 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 			})}
 		</BatchOutput>
 	);
-}
+};
 
 export default memo(Batch);

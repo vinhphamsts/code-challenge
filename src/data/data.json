@@ -6,22 +6,47 @@
     "initCode": "function updateLight(current) {\n\n}",
     "testSuite": [
       {
-        "id": 0,
         "name": "update light from red to green",
         "input": "'red'",
         "expected": "'green'"
       },
       {
-        "id": 1,
         "name": "update light from green to yellow",
         "input": "'green'",
         "expected": "'yellow'"
       },
       {
-        "id": 2,
         "name": "update light from yellow to red",
         "input": "'yellow'",
         "expected": "'red'"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "description": "Complete the square sum function so that it squares each number passed into it and then sums the results together.\n\nFor example, for [1, 2, 2] it should return 9 because 1^2 + 2^2 + 2^2 = 9.",
+    "functionName": "squareSum",
+    "initCode": "function squareSum(numbers) {\n\n}",
+    "testSuite": [
+      {
+        "name": "square sum [1, 2]",
+        "input": "[1, 2]",
+        "expected": 5
+      },
+      {
+        "name": "square sum [0, 3, 4, 5]",
+        "input": "[0, 3, 4, 5]",
+        "expected": 50
+      },
+      {
+        "name": "square sum []",
+        "input": "[]",
+        "expected": 0
+      },
+      {
+        "name": "square sum [1, 9, 3, 4, 3, 5, 100, 1039]",
+        "input": "[1, 9, 3, 4, 3, 5, 100, 1039]",
+        "expected": 1089662
       }
     ]
   }

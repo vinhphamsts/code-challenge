@@ -12,4 +12,4 @@ export const SUBMISSIONS_TIMEOUT = {
 	BATCH: 5 * 1000,
 };
 
-export const CONTROL_OPTIONS = ['Instructions', 'Output', 'Tests']
+export const CONTROL_OPTIONS = ['Instructions', 'Output', 'Tests'];

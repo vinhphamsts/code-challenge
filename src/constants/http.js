@@ -1,7 +1,7 @@
 export const URLS = {
 	LANGUAGES: '/languages',
 	SUBMISSIONS: '/submissions',
-	BATCH_SUBMISSIONS: '/submissions/batch'
+	BATCH_SUBMISSIONS: '/submissions/batch',
 };
 
 export const HTTP_METHODS = {

@@ -6,17 +6,19 @@ import ControlBar from '../common/ControlBar.jsx';
 import { CONTROL_INDEX } from '../../constants/common.js';
 import Batch from '../TestBatch/Batch';
 import TestBatch from '../../data/data.json';
+import { BatchControl } from '../TestBatch/BatchControl';
 
 const ControlDisplay = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template: 32px 32px / 1fr;
+  gap: 24px;
 `;
 
 const Display = styled.div`
   display: ${({ visible }) => visible ? 'block' : 'none'};
 `;
 
-const InstructionAndOutput = ({ batchOrder = 0 }) => {
+const InstructionAndOutput = ({ batchOrder = 0, onBatchChange }) => {
 	const [controlIndex, setControlIndex] = useState(CONTROL_INDEX.INPUT);
 
 	const handleControlIndex = useCallback((index) => {
@@ -25,6 +27,7 @@ const InstructionAndOutput = ({ batchOrder = 0 }) => {
 
 	return (
 		<ControlDisplay>
+			<BatchControl onBatchChange={onBatchChange}/>
 			<ControlBar onSelect={handleControlIndex} active={controlIndex}/>
 			<Display visible={controlIndex === CONTROL_INDEX.INPUT}>
 				<ChallengeDescription>
@@ -35,10 +38,10 @@ const InstructionAndOutput = ({ batchOrder = 0 }) => {
 				<ChallengeOutput onChangeTab={handleControlIndex}/>
 			</Display>
 			<Display visible={controlIndex === CONTROL_INDEX.TEST}>
-				<Batch onChangeTab={handleControlIndex} />
+				<Batch onChangeTab={handleControlIndex} batchOrder={batchOrder}/>
 			</Display>
 		</ControlDisplay>
-	)
-}
+	);
+};
 
 export default memo(InstructionAndOutput);

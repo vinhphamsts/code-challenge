@@ -3,7 +3,13 @@ import {
 	fetchLanguages, executeCode, getASubmission, batchSubmission, getBatchSubmission,
 } from './reducer.js';
 import { createWatcher, createWorker } from './utils.js';
-import { fetchLanguagesApi, createSubmissionsApi, getASubmissionApi, createBatchSubmissionsApi, getBatchSubmissionApi } from '../api/judge0.js';
+import {
+	fetchLanguagesApi,
+	createSubmissionsApi,
+	getASubmissionApi,
+	createBatchSubmissionsApi,
+	getBatchSubmissionApi,
+} from '../api/judge0.js';
 
 const fetchLanguagesWorker = createWorker(fetchLanguagesApi, fetchLanguages);
 const executeCodeWorker = createWorker(createSubmissionsApi, executeCode);

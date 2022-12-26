@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
 import Editor from '@monaco-editor/react';
 import { MAIN_COLOR } from '../../styles/colors.js';
@@ -14,6 +14,10 @@ const Container = styled.div`
 `;
 const CodeWindow = ({ onChange, languageName, defaultCode }) => {
 	const [value, setValue] = useState(defaultCode || '');
+
+	useEffect(() => {
+		setValue(() => defaultCode);
+	}, [defaultCode]);
 
 	const handleEditorChange = (value) => {
 		setValue(value);
