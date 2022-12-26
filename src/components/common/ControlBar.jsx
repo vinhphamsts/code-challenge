@@ -1,10 +1,12 @@
+import { memo } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 import styled from 'styled-components';
 import { LIGHT_COLOR, MAIN_COLOR } from '../../styles/colors.js';
-import { nanoid } from '@reduxjs/toolkit';
+import { CONTROL_OPTIONS } from '../../constants/common.js';
 
 const Container = styled.div`
   display: grid;
-  grid-template: 38px / 0.5fr 0.5fr;
+  grid-template: 38px / 0.3fr 0.3fr 0.3fr;
 `;
 
 const Tab = styled.button`
@@ -21,7 +23,7 @@ const Tab = styled.button`
   }
 `;
 
-export const ControlBar = ({ onSelect, active = 0, options = ['Instruction', 'Output'] }) => {
+const ControlBar = ({ onSelect, active = 0, options = CONTROL_OPTIONS }) => {
 	const handleSelect = tab => () => {
 		onSelect(tab);
 	};
@@ -30,3 +32,5 @@ export const ControlBar = ({ onSelect, active = 0, options = ['Instruction', 'Ou
 				<Tab key={nanoid()} active={active === index} onClick={handleSelect(index)}>{item}</Tab>))}
 		</Container>);
 };
+
+export default memo(ControlBar);

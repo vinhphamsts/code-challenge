@@ -1,24 +1,8 @@
-import axios from 'axios';
+import { createRequest } from './configurations';
+import { URLS, HTTP_METHODS, SUBMISSIONS_TYPE } from '../constants/http.js';
 
-axios.defaults.baseURL = import.meta.env.VITE_END_POINT;
-axios.defaults.headers.post['content-type'] = 'application/json';
-
-const LANG_URL = '/languages';
-const SUBMISSION_URL = '/submissions';
-const METHODS = {
-	GET: 'get',
-	POST: 'post',
-};
-
-const createSimpleRequest = method => url => async data => await axios[method](url, data)
-		.then(response => response.data)
-		.catch(e => e.response.data);
-
-export const getLanguagesApi = createSimpleRequest(METHODS.GET)(LANG_URL);
-
-export const createSubmissionsApi = createSimpleRequest(METHODS.POST)(SUBMISSION_URL)
-
-export const getASubmissionApi = async token => await axios
-	.get(`${SUBMISSION_URL}/${token}`)
-	.then(response => response.data)
-	.catch(error => error.response.data);
+export const fetchLanguagesApi = createRequest(HTTP_METHODS.GET)(URLS.LANGUAGES);
+export const createSubmissionsApi = createRequest(HTTP_METHODS.POST)(URLS.SUBMISSIONS);
+export const getASubmissionApi = createRequest(HTTP_METHODS.GET)(URLS.SUBMISSIONS, SUBMISSIONS_TYPE.SINGLE);
+export const getBatchSubmissionApi = createRequest(HTTP_METHODS.GET)(URLS.BATCH_SUBMISSIONS, SUBMISSIONS_TYPE.BATCH);
+export const createBatchSubmissionsApi = createRequest(HTTP_METHODS.POST)(URLS.BATCH_SUBMISSIONS);

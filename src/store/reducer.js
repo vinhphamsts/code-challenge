@@ -3,9 +3,18 @@ import { createActionSuite } from './utils.js';
 
 export const fetchLanguages = createActionSuite('fetch_languages');
 export const executeCode = createActionSuite('execute_code');
+export const batchSubmission = createActionSuite('batch_submission')
 export const getASubmission = createActionSuite('get_a_submission');
+export const getBatchSubmission = createActionSuite('get_batch_submission');
 export const getLoading = createActionSuite('get_loading');
 
+const initialASubmission = {
+	status: {
+		id: null,
+		description: '',
+	},
+	error: null,
+}
 const initialState = {
 	fetchLanguages: {
 		success: [], error: null,
@@ -22,10 +31,16 @@ const initialState = {
 		success: {
 			value: false,
 		}, error: null,
+	}, batchSubmission: {
+		success: null,
+		error: null
+	}, getBatchSubmission: {
+		success: null,
+		error: null,
 	},
 };
 
-const codeReducer = createReducer(initialState, builder => {
+const reducer = createReducer(initialState, builder => {
 	builder
 		.addCase(executeCode.success, (state, action) => {
 			state.executionCode.success = action.payload;
@@ -40,11 +55,20 @@ const codeReducer = createReducer(initialState, builder => {
 		})
 		.addCase(getASubmission.error, (state, action) => {
 			state.getASubmission.error = action.payload;
+			state.batchSubmission.success = null;
 		})
 		.addCase(getLoading.success, (state, action) => {
 			state.getLoading.success.value = action.payload;
 		})
+		.addCase(batchSubmission.success, (state, action) => {
+			state.batchSubmission.success = action.payload ?
+				action.payload.map(item => item.token).join(',') : '';
+			state.getASubmission.success = initialASubmission;
+		})
+		.addCase(getBatchSubmission.success, (state, action) => {
+			state.getBatchSubmission.success = action.payload?.submissions;
+		})
 	;
 });
 
-export default codeReducer;
+export default reducer;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -10,12 +11,12 @@ const Container = styled.div`
 const Paragraph = styled.p`
   font-size: 13px;
 `;
-export const ChallengeDescription = ({ children }) => {
-	return (
-		<Container>
-			<Paragraph>
-				{children}
-			</Paragraph>
-		</Container>
-	);
-};
+const Instruction = ({ children }) => (
+	<Container>
+		<Paragraph>
+			{children}
+		</Paragraph>
+	</Container>
+);
+
+export default memo(Instruction);

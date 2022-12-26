@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
 import { useSelector } from 'react-redux';
+import styled, { keyframes } from 'styled-components';
 
 const Overlay = styled.div`
   position: fixed;

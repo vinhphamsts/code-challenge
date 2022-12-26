@@ -1,51 +1,22 @@
+import { all } from 'redux-saga/effects';
 import {
-	fetchLanguages, executeCode, getASubmission,
+	fetchLanguages, executeCode, getASubmission, batchSubmission, getBatchSubmission,
 } from './reducer.js';
-import { getLanguagesApi, createSubmissionsApi, getASubmissionApi } from '../api/judge0.js';
+import { createWatcher, createWorker } from './utils.js';
+import { fetchLanguagesApi, createSubmissionsApi, getASubmissionApi, createBatchSubmissionsApi, getBatchSubmissionApi } from '../api/judge0.js';
 
-import { call, put, takeLatest, all } from 'redux-saga/effects';
+const fetchLanguagesWorker = createWorker(fetchLanguagesApi, fetchLanguages);
+const executeCodeWorker = createWorker(createSubmissionsApi, executeCode);
+const getASubmissionWorker = createWorker(getASubmissionApi, getASubmission);
+const getBatchSubmissionWorker = createWorker(getBatchSubmissionApi, getBatchSubmission);
+const batchSubmissionsWorker = createWorker(createBatchSubmissionsApi, batchSubmission);
 
-// workers
-function* fetchLanguagesWorker() {
-	try {
-		const languages = yield call(getLanguagesApi);
-		yield put(fetchLanguages.success(languages));
-	} catch (e) {
-		console.error(e.message);
-	}
-}
-
-function* executeCodeWorker(action) {
-	try {
-		const result = yield call(createSubmissionsApi, action.payload);
-		yield put(executeCode.success(result));
-	} catch (e) {
-		yield put(executeCode.error(e.message))
-	}
-}
-
-function* getASubmissionWorker(action) {
-	try {
-		const result = yield call(getASubmissionApi, action.payload);
-		yield put(getASubmission.success(result));
-	} catch (e) {
-		yield put(getASubmission.error(e.message))
-	}
-}
-
-// watchers
-function* fetchLanguagesWatcher() {
-	yield takeLatest(fetchLanguages.start.toString(), fetchLanguagesWorker);
-}
-
-function* executeCodeWatcher() {
-	yield takeLatest(executeCode.start.toString(), executeCodeWorker);
-}
-
-function* getASubmissionWatcher() {
-	yield takeLatest(getASubmission.start.toString(), getASubmissionWorker);
-}
+const fetchLanguagesWatcher = createWatcher(fetchLanguages, fetchLanguagesWorker);
+const executeCodeWatcher = createWatcher(executeCode, executeCodeWorker);
+const getASubmissionWatcher = createWatcher(getASubmission, getASubmissionWorker);
+const getBatchSubmissionWatcher = createWatcher(getBatchSubmission, getBatchSubmissionWorker);
+const batchSubmissionsWatcher = createWatcher(batchSubmission, batchSubmissionsWorker);
 
 export default function* () {
-	yield all([fetchLanguagesWatcher(), executeCodeWatcher(), getASubmissionWatcher()]);
+	yield all([fetchLanguagesWatcher(), executeCodeWatcher(), getASubmissionWatcher(), batchSubmissionsWatcher(), getBatchSubmissionWatcher()]);
 }
