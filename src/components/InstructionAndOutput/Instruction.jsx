@@ -9,6 +9,7 @@ const Container = styled.div`
 `;
 
 const Paragraph = styled.p`
+	width: 100%;
   font-size: 13px;
 `;
 const Instruction = ({ children }) => (

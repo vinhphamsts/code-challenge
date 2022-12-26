@@ -6,7 +6,8 @@ import { CONTROL_OPTIONS } from '../../constants/common.js';
 
 const Container = styled.div`
   display: grid;
-  grid-template: 38px / 0.3fr 0.3fr 0.3fr;
+  grid-template: 38px / 0.4fr 0.3fr 0.3fr;
+	width: 100%;
 `;
 
 const Tab = styled.button`

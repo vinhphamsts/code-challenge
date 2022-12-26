@@ -12,8 +12,8 @@ const Container = styled.div`
   overflow: hidden;
   padding: 4px 0;
 `;
-const CodeWindow = ({ onChange, languageName, code }) => {
-	const [value, setValue] = useState(code || '');
+const CodeWindow = ({ onChange, languageName, defaultCode }) => {
+	const [value, setValue] = useState(defaultCode || '');
 
 	const handleEditorChange = (value) => {
 		setValue(value);

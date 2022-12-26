@@ -5,6 +5,7 @@ import ChallengeOutput from './CodeOutput.jsx';
 import ControlBar from '../common/ControlBar.jsx';
 import { CONTROL_INDEX } from '../../constants/common.js';
 import Batch from '../TestBatch/Batch';
+import TestBatch from '../../data/data.json';
 
 const ControlDisplay = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const Display = styled.div`
   display: ${({ visible }) => visible ? 'block' : 'none'};
 `;
 
-const InstructionAndOutput = () => {
+const InstructionAndOutput = ({ batchOrder = 0 }) => {
 	const [controlIndex, setControlIndex] = useState(CONTROL_INDEX.INPUT);
 
 	const handleControlIndex = useCallback((index) => {
@@ -27,9 +28,7 @@ const InstructionAndOutput = () => {
 			<ControlBar onSelect={handleControlIndex} active={controlIndex}/>
 			<Display visible={controlIndex === CONTROL_INDEX.INPUT}>
 				<ChallengeDescription>
-					Write a function that add all the input number regardless to the number of input. For example: add(1, 2):
-					3;
-					add(1, 2, 3, 4, 5): 15; ...
+					{TestBatch[batchOrder].description}
 				</ChallengeDescription>
 			</Display>
 			<Display visible={controlIndex === CONTROL_INDEX.OUTPUT}>

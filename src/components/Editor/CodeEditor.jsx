@@ -6,6 +6,8 @@ import CodeEditorWindow from './CodeWindow.jsx';
 import Button from '../common/Button.jsx';
 import { executeCode, fetchLanguages, batchSubmission } from '../../store/reducer.js';
 import { CODE_LENGTH_ENABLED, COMPILE_TIMEOUT } from '../../constants/common.js';
+import TestBatch from '../../data/data.json';
+import { generateTestBatch } from './generateTestBatch.js';
 
 const EditorWrapper = styled.div`
   display: grid;
@@ -29,9 +31,11 @@ const Actions = styled.form`
   grid-template: 1fr / 0.5fr 0.5fr;
   gap: 16px;
 `;
+
 const CodeEditor = () => {
 	const languages = useSelector(state => state.fetchLanguages.success);
 	const dispatch = useDispatch();
+	const [testBatch, setTestBatch] = useState(TestBatch[0]);
 
 	const [languageName, setLanguageName] = useState('Javascript');
 	const [languageId, setLanguageId] = useState(63);
@@ -55,24 +59,7 @@ const CodeEditor = () => {
 
 	const handleSubmitBatch = () => {
 		const data = {
-			submissions: [
-				{
-					'language_id': languageId,
-					'source_code': `${code}; console.log(multiply(3, 4) === 7)`,
-				},
-				{
-					'language_id': languageId,
-					'source_code': `${code}; console.log(multiply(9, 4, 5, 3) === 21)`,
-				},
-				{
-					'language_id': languageId,
-					'source_code': `${code}; console.log(multiply(1, 1, 1, 1) === 4)`,
-				},
-				{
-					'language_id': languageId,
-					'source_code': `${code}; console.log(multiply(30, 40) === 70)`,
-				},
-			],
+			submissions: generateTestBatch({ batch: testBatch, languageId, code }),
 		};
 		dispatch(batchSubmission.start(data));
 	};
@@ -88,7 +75,7 @@ const CodeEditor = () => {
 		<EditorWrapper>
 			<LanguagesDropdown languageOptions={languages} onSelectChange={handleChangeLanguages}/>
 			<Code>
-				<CodeEditorWindow onChange={handleCodeChange} languageName={languageName}/>
+				<CodeEditorWindow defaultCode={testBatch.initCode} onChange={handleCodeChange} languageName={languageName}/>
 				<Actions onSubmit={handleExecuteCode}>
 					<Button type="submit" label="Execute" disabled={!enableExecution}/>
 					<Button type="button" label="Submit Test" disabled={!enableExecution} onClick={handleSubmitBatch}/>
