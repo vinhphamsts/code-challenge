@@ -25,13 +25,13 @@ export const LandingPage = () => {
 	const [batchOrder, setBatchOrder] = useState(0);
 
 	const handleBatchChange = useCallback(value => () => {
-		dispatch(resetSubmissions.success());
 
 		setBatchOrder(order => {
 			if (value < 0 && order === 0 || value > 0 && order === batchLen - 1) {
 				return order;
 			}
 
+			dispatch(resetSubmissions.success());
 			return order + value;
 		});
 	}, []);
