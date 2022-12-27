@@ -22,6 +22,18 @@ const Output = styled.p`
   }
 `;
 
+const Reason = styled(Error)`
+  font-weight: normal;
+  padding: 6px 12px;
+  border: 1px solid ${ERROR_COLOR};
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+const Expected = styled.span`
+  color: ${PASSED_COLOR};
+`;
+
 const BatchOutput = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,9 +92,18 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 				if ([3].includes(result.statusId)) {
 					return (
 						<Output key={nanoid()}>
-							{index + 1}: {testSuite[index].name}: {result.stdout == 'true\n'
-							? <Passed>Passed</Passed>
-							: <Failed>Failed</Failed>}
+							{index + 1}: {testSuite[index].name}: <Passed>Passed</Passed>
+						</Output>);
+				}
+				if ([4].includes(result.statusId)) {
+					return (
+						<Output key={nanoid()}>
+							{index + 1}: {testSuite[index].name}: <Failed>Failed</Failed>
+							<Reason>
+								<Expected>
+									Expected: {testSuite[index].expected}
+								</Expected> - Actual: {result.stdout}
+							</Reason>
 						</Output>);
 				}
 				if ([1, 2].includes(result.statusId)) {

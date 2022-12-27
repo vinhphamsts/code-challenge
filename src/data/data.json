@@ -1,30 +1,30 @@
 [
   {
     "id": 1,
-    "description": "You're writing code to control your town's traffic lights. You need a function to handle each change from *`green`*, to *`yellow`*, to *`red`*, and then to *`green`* again.\n\nComplete the function that takes a string as an argument representing the current state of the light and returns a string representing the state the light should change to.\n\nFor example, when the input is *`green`*, output should be *`yellow`*.\n\n",
+    "description": "## Thinkful - Logic Drills: Traffic light\nYou're writing code to control your town's traffic lights. You need a function to handle each change from *`green`*, to *`yellow`*, to *`red`*, and then to *`green`* again.\n\nComplete the function that takes a string as an argument representing the current state of the light and returns a string representing the state the light should change to.\n\nFor example, when the input is *`green`*, output should be *`yellow`*.\n\n",
     "functionName": "updateLight",
     "initCode": "function updateLight(current) {\n\n}",
     "testSuite": [
       {
         "name": "update light from red to green",
         "input": "'red'",
-        "expected": "'green'"
+        "expected": "green"
       },
       {
         "name": "update light from green to yellow",
         "input": "'green'",
-        "expected": "'yellow'"
+        "expected": "yellow"
       },
       {
         "name": "update light from yellow to red",
         "input": "'yellow'",
-        "expected": "'red'"
+        "expected": "red"
       }
     ]
   },
   {
     "id": 2,
-    "description": "Complete the square sum function so that it squares each number passed into it and then sums the results together.\n\nFor example, for **`[1, 2, 2]`** it should return **`9`** because **`1^2 + 2^2 + 2^2 = 9`**.",
+    "description": "## Square Sum\nComplete the square sum function so that it squares each number passed into it and then sums the results together.\n\nFor example, for **`[1, 2, 2]`** it should return **`9`** because **`1^2 + 2^2 + 2^2 = 9`**.",
     "functionName": "squareSum",
     "initCode": "function squareSum(numbers) {\n\n}",
     "testSuite": [
@@ -59,17 +59,40 @@
       {
         "name": "mixMax [1, 2, 3, 4, 5] --> [1, 5]",
         "input": "[1, 2, 3, 4, 5]",
-        "expected": "[1, 5]"
+        "expected": "[ 1, 5 ]"
       },
       {
         "name": "mixMax [2334454, 5] --> [5, 2334454]",
         "input": "[2334454, 5]",
-        "expected": "[5, 2334454]"
+        "expected": "[ 5, 2334454 ]"
       },
       {
         "name": "mixMax [1] --> [1, 1]",
         "input": "[1]",
-        "expected": "[1, 1]"
+        "expected": "[ 1, 1 ]"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "description": "## Disemvowel Trolls\nTrolls are attacking your comment section!\n\nA common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.\n\nYour task is to write a function that takes a string and return a new string with all vowels removed.\n\nFor example, the string \"This website is for losers LOL!\" would become \"Ths wbst s fr lsrs LL!\".\n\n**Note**: for this *`y`* isn't considered a vowel.",
+    "functionName": "disemvowel",
+    "initCode": "function disemvowel(str) {\n  return str;\n}",
+    "testSuite": [
+      {
+        "name": "disemvowel('This website is for losers LOL!')",
+        "input": "'This website is for losers LOL!'",
+        "expected": "Ths wbst s fr lsrs LL!"
+      },
+      {
+        "name": "disemvowel('No offense but, Your writing is among the worst I've ever read')",
+        "input": "'No offense but, Your writing is among the worst I\\'ve ever read'",
+        "expected": "N ffns bt, Yr wrtng s mng th wrst 'v vr rd"
+      },
+      {
+        "name": "disemvowel('What are you, a communist?')",
+        "input": "'What are you, a communist?'",
+        "expected": "Wht r y,  cmmnst?"
       }
     ]
   }

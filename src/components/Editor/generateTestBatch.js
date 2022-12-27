@@ -1,13 +1,11 @@
 export const generateTestBatch = ({ batch, languageId, code }) => {
 	const { testSuite, functionName } = batch;
 	return testSuite.map(test => {
-		const isComplexData = Array.isArray(test.expected) || Object.keys(test.expected).length > 0;
-		const assertion = isComplexData ?
-			`console.log(JSON.stringify(${functionName}(${test.input})) === JSON.stringify(${test.expected}))`
-			: `console.log(${functionName}(${test.input}) === ${test.expected})`;
+		const runCode = `console.log(${functionName}(${test.input}))`;
 		return {
 			language_id: languageId,
-			source_code: `${code}; ${assertion}`,
+			source_code: `${code}; ${runCode}`,
+			expected_output: test.expected,
 		};
 	});
 };
