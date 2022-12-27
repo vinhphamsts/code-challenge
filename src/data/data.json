@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "description": "You're writing code to control your town's traffic lights. You need a function to handle each change from green, to yellow, to red, and then to green again.\n\nComplete the function that takes a string as an argument representing the current state of the light and returns a string representing the state the light should change to.\n\nFor example, when the input is green, output should be yellow.\n\n",
+    "description": "You're writing code to control your town's traffic lights. You need a function to handle each change from *`green`*, to *`yellow`*, to *`red`*, and then to *`green`* again.\n\nComplete the function that takes a string as an argument representing the current state of the light and returns a string representing the state the light should change to.\n\nFor example, when the input is *`green`*, output should be *`yellow`*.\n\n",
     "functionName": "updateLight",
     "initCode": "function updateLight(current) {\n\n}",
     "testSuite": [
@@ -24,7 +24,7 @@
   },
   {
     "id": 2,
-    "description": "Complete the square sum function so that it squares each number passed into it and then sums the results together.\n\nFor example, for [1, 2, 2] it should return 9 because 1^2 + 2^2 + 2^2 = 9.",
+    "description": "Complete the square sum function so that it squares each number passed into it and then sums the results together.\n\nFor example, for **`[1, 2, 2]`** it should return **`9`** because **`1^2 + 2^2 + 2^2 = 9`**.",
     "functionName": "squareSum",
     "initCode": "function squareSum(numbers) {\n\n}",
     "testSuite": [
@@ -47,6 +47,29 @@
         "name": "square sum [1, 9, 3, 4, 3, 5, 100, 1039]",
         "input": "[1, 9, 3, 4, 3, 5, 100, 1039]",
         "expected": 1089662
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "description": "## The highest profit wins!\n ### Story\nBen has a very simple idea to make some profit: he buys something and sells it again. Of course, this wouldn't give him any profit at all if he was simply to buy and sell it at the same price. Instead, he's going to buy it for the lowest possible price and sell it at the highest.\n\n### Task\nWrite a function that returns both the minimum and maximum number of the given list/array.\n\n### Examples (Input --> Output)\n`[1,2,3,4,5] --> [1,5]`\n\n`[2334454,5] --> [5,2334454]`\n\n`[1]         --> [1,1]`\n### Remarks\nAll arrays or lists will always have at least one element, so you don't need to check the length. Also, your function will always get an array or a list, you don't have to check for null, undefined or similar.",
+    "functionName": "mixMax",
+    "initCode": "function mixMax(arr) {\n\treturn [0,0]; // fix me!\n}",
+    "testSuite": [
+      {
+        "name": "mixMax [1, 2, 3, 4, 5] --> [1, 5]",
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "[1, 5]"
+      },
+      {
+        "name": "mixMax [2334454, 5] --> [5, 2334454]",
+        "input": "[2334454, 5]",
+        "expected": "[5, 2334454]"
+      },
+      {
+        "name": "mixMax [1] --> [1, 1]",
+        "input": "[1]",
+        "expected": "[1, 1]"
       }
     ]
   }

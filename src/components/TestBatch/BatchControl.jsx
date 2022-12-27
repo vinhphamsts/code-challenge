@@ -3,7 +3,7 @@ import Button from '../common/Button';
 
 const Container = styled.div`
   display: grid;
-  grid-template: auto / 0.5fr 0.5fr;
+  grid-template: 38px / 0.5fr 0.5fr;
   gap: 24px;
 `;
 export const BatchControl = ({ onBatchChange }) => {

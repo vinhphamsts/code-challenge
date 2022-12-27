@@ -7,6 +7,7 @@ import { CONTROL_TAB_INDEX } from '../../constants/common.js';
 import Batch from '../TestBatch/Batch';
 import TestBatch from '../../data/data.json';
 import { BatchControl } from '../TestBatch/BatchControl';
+import { MAIN_COLOR } from '../../styles/colors.js';
 
 const ControlDisplay = styled.div`
   display: grid;
@@ -16,6 +17,14 @@ const ControlDisplay = styled.div`
 
 const Display = styled.div`
   display: ${({ visible }) => visible ? 'block' : 'none'};
+	
+	@media screen and (min-width: 768px) {
+  	height: 56vh;
+	}
+  overflow-y: auto;
+	border: 1px solid ${MAIN_COLOR};
+	padding: 8px;
+	border-radius: 4px;
 `;
 
 const InstructionAndOutput = ({ batchOrder = 0, onBatchChange }) => {
