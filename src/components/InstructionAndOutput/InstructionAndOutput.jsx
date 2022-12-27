@@ -17,14 +17,14 @@ const ControlDisplay = styled.div`
 
 const Display = styled.div`
   display: ${({ visible }) => visible ? 'block' : 'none'};
+	border: 1px solid ${MAIN_COLOR};
+	padding: 8px;
+	border-radius: 4px;
+  overflow-y: auto;
 	
 	@media screen and (min-width: 768px) {
   	height: 56vh;
 	}
-  overflow-y: auto;
-	border: 1px solid ${MAIN_COLOR};
-	padding: 8px;
-	border-radius: 4px;
 `;
 
 const InstructionAndOutput = ({ batchOrder = 0, onBatchChange }) => {
