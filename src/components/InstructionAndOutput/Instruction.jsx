@@ -7,7 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 14px;
 `;
 
 const Instruction = ({ children }) => (

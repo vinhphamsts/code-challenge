@@ -2,7 +2,7 @@ import { useEffect, memo } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getASubmission, getLoading } from '../../store/reducer.js';
-import { errorTextColor, mainTextColor } from '../../styles/colors.js';
+import { ERROR_COLOR, PASSED_COLOR } from '../../styles/colors.js';
 import { CONTROL_TAB_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 
 const Container = styled.div`
@@ -11,12 +11,12 @@ const Container = styled.div`
 `;
 
 const Error = styled.p`
-  ${errorTextColor};
+  color: ${ERROR_COLOR};
   font-size: 13px;
 `;
 
 const Output = styled.p`
-  ${mainTextColor};
+  color: ${PASSED_COLOR};
   padding: 8px;
   border-right: 5px;
 `;

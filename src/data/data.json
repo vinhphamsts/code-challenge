@@ -6,17 +6,17 @@
     "initCode": "function updateLight(current) {\n\n}",
     "testSuite": [
       {
-        "name": "update light from red to green",
+        "name": "Update light from red to green",
         "input": "'red'",
         "expected": "green"
       },
       {
-        "name": "update light from green to yellow",
+        "name": "Update light from green to yellow",
         "input": "'green'",
         "expected": "yellow"
       },
       {
-        "name": "update light from yellow to red",
+        "name": "Update light from yellow to red",
         "input": "'yellow'",
         "expected": "red"
       }

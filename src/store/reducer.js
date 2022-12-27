@@ -81,6 +81,7 @@ const reducer = createReducer(initialState, builder => {
 		})
 		.addCase(resetSubmissions.success, (state) => {
 			state.getBatchSubmission = initialBatchSubmission;
+			state.batchSubmission = initialBatchSubmission;
 			state.getASubmission.success = initialASubmission;
 		})
 	;
