@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/"
+  from = "/submissions"
   to = "http://159.65.139.209:2358"
   status = 200
   force = true
