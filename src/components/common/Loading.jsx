@@ -15,18 +15,15 @@ const Overlay = styled.div`
 
 const rotate = keyframes`
   0% {
-    transform: rotate(0deg) scale(0.9);
+    transform: rotate(0deg);
   }
-	50% {
-		transform: rotate(180deg) scale(1.1);
-	}
   100% {
-    transform: rotate(360deg) scale(0.9);
+    transform: rotate(360deg);
   }
 `;
 
 const Image = styled.img`
-  animation: ${rotate} 600ms infinite linear;
+  animation: ${rotate} 500ms infinite linear;
 `
 
 export const Loading = () => {

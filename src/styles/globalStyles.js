@@ -10,7 +10,6 @@ const GlobalStyles = createGlobalStyle`
 
     color-scheme: dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #1e1e1e;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;

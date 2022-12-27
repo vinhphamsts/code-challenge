@@ -1,22 +1,20 @@
 import { memo } from 'react';
 import styled from 'styled-components';
+import ReactMarkdown  from 'react-markdown';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   border-radius: 4px;
+  font-size: 14px;
 `;
 
-const Paragraph = styled.p`
-  width: 100%;
-  font-size: 13px;
-`;
 const Instruction = ({ children }) => (
 	<Container>
-		<Paragraph>
+		<ReactMarkdown>
 			{children}
-		</Paragraph>
+		</ReactMarkdown>
 	</Container>
 );
 

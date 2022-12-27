@@ -4,28 +4,41 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBatchSubmission, getLoading } from '../../store/reducer.js';
 import { CONTROL_TAB_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
-import { ERROR_COLOR, errorTextColor, mainTextColor, PASSED_COLOR } from '../../styles/colors.js';
+import { ERROR_COLOR, MAIN_COLOR, PASSED_COLOR } from '../../styles/colors.js';
 import TestBatch from '../../data/data.json';
 
 const Error = styled.p`
-  ${errorTextColor};
+  color: ${ERROR_COLOR};
   font-size: 13px;
 `;
 
 const Output = styled.p`
-  margin: 0;
-  ${mainTextColor};
+  margin: 8px;
+	color: ${MAIN_COLOR};
   font-size: 12px;
+`;
 
-  &:first-letter {
-    text-transform: uppercase;
-  }
+const Title = styled.div`
+  display: grid;
+  grid-template: auto / 0.5fr 0.5fr;
+  justify-content: center;
+  justify-items: center;
+  font-size: 13px;
+  padding: 5px;
+  border-bottom: 2px solid ${MAIN_COLOR};
+`;
+
+const Reason = styled.div`
+  margin: 8px 0;
+  padding: 6px 12px;
+  border: 1px solid ${ERROR_COLOR};
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const BatchOutput = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 24px 0;
   width: 100%;
 `;
 
@@ -73,16 +86,35 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 	}, [batchTokens]);
 
 	const { testSuite } = testBatch;
+	const noTestPass = batchTokens ? resolveTest.filter(result => result.statusId === 3).length : 0;
+	const noTestFail = batchTokens ? testSuite.length - noTestPass : 0;
 
 	return (
 		<BatchOutput>
+			{batchTokens && (
+				<Title>
+					<Passed>Passed: {noTestPass}</Passed> <Failed>Failed: {noTestFail}</Failed>
+				</Title>
+			)}
 			{resolveTest.map((result, index) => {
+				const test = testSuite[index];
+
 				if ([3].includes(result.statusId)) {
 					return (
 						<Output key={nanoid()}>
-							{index + 1}: {testSuite[index].name}: {result.stdout == 'true\n'
-							? <Passed>Passed</Passed>
-							: <Failed>Failed</Failed>}
+							{index + 1}: {test.name}: <Passed>Passed</Passed>
+						</Output>);
+				}
+				if ([4].includes(result.statusId)) {
+					return (
+						<Output key={nanoid()}>
+							{index + 1}: {test.name}: <Failed>Failed</Failed>
+							<Reason>
+								<Passed>
+									Expected: {test.expected}
+								</Passed>{' - '}
+								<Failed>Actual: {result.stdout}</Failed>
+							</Reason>
 						</Output>);
 				}
 				if ([1, 2].includes(result.statusId)) {
