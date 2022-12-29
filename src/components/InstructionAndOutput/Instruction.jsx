@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Instruction = ({ children }) => (
-	<Container>
+	<Container data-testid="Instructions">
 		<ReactMarkdown>
 			{children}
 		</ReactMarkdown>

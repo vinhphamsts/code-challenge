@@ -7,6 +7,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    includeSource: ['src/**/*.{js, jsx}']
+    includeSource: ['src/**/*.{js, jsx}'],
+    coverage: {
+      all: true,
+    }
   }
 })

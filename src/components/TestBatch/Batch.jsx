@@ -90,7 +90,7 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 	const noTestFail = batchTokens ? testSuite.length - noTestPass : 0;
 
 	return (
-		<BatchOutput>
+		<BatchOutput data-testid="Batch-Tests">
 			{batchTokens && (
 				<Title>
 					<Passed>Passed: {noTestPass}</Passed> <Failed>Failed: {noTestFail}</Failed>

@@ -24,7 +24,9 @@ const Output = styled.p`
 const CodeOutput = ({ onChangeTab }) => {
 	const dispatch = useDispatch();
 	const execution = useSelector(state => state.executionCode.success);
-	const aSubmissionResult = useSelector(state => state.getASubmission);
+	const aSubmissionResult = useSelector(state => {
+		return state.getASubmission
+	});
 
 	const { status, compile_output, stderr, stdout, error } = aSubmissionResult.success;
 
@@ -46,7 +48,7 @@ const CodeOutput = ({ onChangeTab }) => {
 	const errorMessage = compile_output || stderr || error;
 
 	return (
-		<Container>
+		<Container data-testid="Execution Output">
 			{status?.id !== 3 && <Error>{errorMessage}</Error>}
 			{status?.id === 3 && (<Output>{stdout}</Output>)}
 		</Container>
