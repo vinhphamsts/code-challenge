@@ -21,8 +21,11 @@ describe('Verifying Utils methods', () => {
 		expect(myAction.error.toString()).toBe('random_action/error')
 	});
 
-	test('createWorker', () => {
+	test('createWorker method', () => {
 		myWorker = createWorker(testApi, myAction);
+		const test = myWorker();
+		console.log('test Safaksjlfsjafj: ', test.next());
+		console.log('test Safaksjlfsjafj2222: ', test.next());
 		expect(myWorker instanceof GeneratorFunction).toBeTruthy();
 
 	});
@@ -30,9 +33,5 @@ describe('Verifying Utils methods', () => {
 	test('createWatcher method', () => {
 		myWatcher = createWatcher(myAction, 'some_worker');
 		expect(myWatcher instanceof GeneratorFunction).toBeTruthy();
-		// console.log(myWatcher().next())
-		// console.log(myWatcher().next())
-
 	});
-
 })
