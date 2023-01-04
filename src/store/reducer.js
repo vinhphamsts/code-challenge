@@ -14,13 +14,13 @@ const initialASubmission = {
 		id: null,
 		description: '',
 	},
-	error: null,
 };
 
 const initialBatchSubmission = {
 	success: null,
 	error: null,
-}
+};
+
 const initialState = {
 	getLoading: {
 		success: {
@@ -48,8 +48,12 @@ const initialState = {
 	getBatchSubmission: {
 		success: null,
 		error: null,
-	}
+	},
 };
+
+const transformLanguages = list => list.map(item => ({
+	...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase(),
+}));
 
 const reducer = createReducer(initialState, builder => {
 	builder
@@ -57,9 +61,7 @@ const reducer = createReducer(initialState, builder => {
 			state.executionCode.success = action.payload;
 		})
 		.addCase(fetchLanguages.success, (state, action) => {
-			state.fetchLanguages.success = action.payload.map(item => ({
-				...item, languageId: item.id, label: item.name, name: item.name.split(/\s+/)[0].toLowerCase(),
-			}));
+			state.fetchLanguages.success = transformLanguages(action.payload);
 		})
 		.addCase(getASubmission.success, (state, action) => {
 			state.getASubmission.success = action.payload;
