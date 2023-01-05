@@ -20,8 +20,8 @@ const Brand = styled.div`
   font-weight: bold;
   color: ${LIGHT_COLOR};
   display: grid;
-	grid-template: auto / 32px auto;
-	gap: 8px;
+  grid-template: auto / 32px auto;
+  gap: 8px;
   align-items: center;
 
   @media screen and (min-width: 768px) {
@@ -31,7 +31,7 @@ const Brand = styled.div`
 
 const Heading = styled.p`
   margin: 0;
-`
+`;
 
 export const Header = () => {
 	return (

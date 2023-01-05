@@ -9,8 +9,7 @@ import { Intro } from './components/common/Intro';
 const AppWrapper = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template: 48px auto auto 26px / 1fr;
-  align-items: stretch;
+  grid-template: 48px auto 26px / 1fr;
 `;
 
 const Container = styled.div`

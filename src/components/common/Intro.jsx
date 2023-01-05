@@ -8,7 +8,7 @@ const Container = styled.div`
   margin-top: 16px;
   color: ${MAIN_COLOR};
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     font-size: 22px;
   }
 
@@ -24,8 +24,10 @@ const Container = styled.div`
 export const Intro = () => {
 	return (
 		<Container>
-			<blockquote><i>Challenge yourself on small coding exercises and improve your development skill by training with your peers on
-				code challenge that continuously challenge and push your coding practice. Let get started!</i></blockquote>
+			<blockquote>
+				<i>Challenge yourself on small coding exercises and improve your development skill by training with
+				your peers on code challenge that continuously challenge and push your coding practice. Let get started!</i>
+			</blockquote>
 		</Container>
 	);
 };
