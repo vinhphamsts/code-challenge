@@ -43,9 +43,9 @@ const Circle = styled.div`
   align-items: center;
   background: ${MAIN_COLOR};
   border-radius: 50%;
-  margin: 32px;
-  height: 30px;
-  width: 30px;
+  margin: 40px;
+  height: 43px;
+  width: 43px;
 
   box-shadow: 0 0 0 0 ${MAIN_COLOR};
   transform: scale(1);
@@ -57,7 +57,7 @@ export const Loading = () => {
 
 	return loading ? (<Overlay>
 		<Circle>
-			<Image src="/code-c.png" alt="Loading ..." width={32}/>
+			<Image src="/code-c.png" alt="Loading ..." width={43}/>
 
 		</Circle>
 	</Overlay>) : null;
