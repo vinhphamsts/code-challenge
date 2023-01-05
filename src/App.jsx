@@ -4,11 +4,12 @@ import { Loading } from './components/common/Loading.jsx';
 import GlobalStyles from './styles/globalStyles.js';
 import { Footer } from './components/common/Footer';
 import { Header } from './components/common/Header';
+import { Intro } from './components/common/Intro';
 
 const AppWrapper = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template: 48px auto 26px / 1fr;
+  grid-template: 48px auto auto 26px / 1fr;
   align-items: stretch;
 `;
 
@@ -27,8 +28,9 @@ function App() {
 
 	return (
 		<AppWrapper>
-			<Header />
+			<Header/>
 			<Container>
+				<Intro/>
 				<GlobalStyles/>
 				<LandingPage/>
 				<Loading/>
