@@ -38,7 +38,7 @@ export const LandingPage = () => {
 
 	return (
 		<Container>
-			<InstructionAndOutput batchOrder={batchOrder} onBatchChange={handleBatchChange} />
+			<InstructionAndOutput batchOrder={batchOrder} onBatchChange={handleBatchChange}/>
 			<CodeEditor batchOrder={batchOrder}/>
 		</Container>
 	);
