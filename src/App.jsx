@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { LandingPage } from './components/LandingPage.jsx';
 import { Loading } from './components/common/Loading.jsx';
-import { Heading } from './styles/typography.js';
 import GlobalStyles from './styles/globalStyles.js';
 import { Footer } from './components/common/Footer';
+import { Header } from './components/common/Header';
 
 const AppWrapper = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template: auto 26px / 1fr;
+  grid-template: 48px auto 26px / 1fr;
   align-items: stretch;
 `;
 
@@ -27,9 +27,9 @@ function App() {
 
 	return (
 		<AppWrapper>
+			<Header />
 			<Container>
 				<GlobalStyles/>
-				<Heading>CODE CHALLENGE</Heading>
 				<LandingPage/>
 				<Loading/>
 			</Container>

@@ -23,7 +23,7 @@ const Container = styled.button`
     color: ${BASE_TEXT_COLOR};
   }
 `;
-const Button = ({ type, label, onClick, ...rest }) => (
+const Button = ({ type = "button", label, onClick, ...rest }) => (
 	<Container type={type} onClick={onClick} {...rest}>{label}</Container>);
 
 export default memo(Button);
