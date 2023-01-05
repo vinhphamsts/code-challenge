@@ -23,7 +23,7 @@ const Display = styled.div`
   overflow-y: auto;
 	
 	@media screen and (min-width: 768px) {
-  	height: 56vh;
+  	height: 57vh;
 	}
 `;
 
