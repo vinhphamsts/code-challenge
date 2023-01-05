@@ -13,7 +13,7 @@ const Container = styled.div`
 export const Footer = () => {
 	return (
 		<Container>
-			&copy;{new Date().getFullYear()} Saigon Technology - Our mission is your success
+			&copy;{new Date().getFullYear()} Saigon Technology - Your success is our mission!
 		</Container>
 	);
 };
