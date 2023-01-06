@@ -17,7 +17,7 @@ The technology stack used in this project includes:
 2. UI development: **ReactJS, Style Component**
 3. State management: **Redux, ReduxToolkit**
 4. API & Middleware: **RESTful & Redux Saga, Axios**
-5. Unit & Automation **Testing: Vitest & Cypress.io**
+5. Unit & Automation Testing: **Vitest & Cypress.io**
 6. Backend: **Judge0 (v1.13.0)** *deployed on a private cloud (Digital Ocean)*
 7. Version control: **Git, GitHub**
 8. CI/CD: **Buddy + AWS**
@@ -38,7 +38,7 @@ The technology stack used in this project includes:
 ## Workflow
 1. Code execution:
     - Compose your codes in the editor
-    - Print out your code execution, i.e, `console.log(add(1, 2))` and hit the ‘Execution’ button
+    - Print out your code execution, i.e, `console.log(add(1, 2))` and hit the `Execution` button
     - The `Output` tab comes up and shows your output
 2. Test your code
     - Compose your codes in the editor
