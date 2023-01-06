@@ -21,14 +21,14 @@ const Output = styled.p`
 `;
 
 const CodeOutput = ({ onChangeTab }) => {
-	const aSubmissionResult = useSelector(state => state.getASubmission);
+	const codeExecutionSuccess = useSelector(state => state.execute.codeExecution);
 
-	const { status, compile_output, stderr, stdout, error } = aSubmissionResult.success;
+	const { status, compile_output, stderr, stdout, error } = codeExecutionSuccess;
 	const errorMessage = compile_output || stderr || error;
 
 	useEffect(() => {
 		onChangeTab(CONTROL_TAB_INDEX.OUTPUT);
-	}, [aSubmissionResult.success]);
+	}, [codeExecutionSuccess]);
 
 	return (
 		<Container data-testid="Execution Output">

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import ReactMarkdown  from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 
 const Container = styled.div`
   display: flex;

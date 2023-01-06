@@ -1,4 +1,4 @@
-import { useEffect, useState, memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
@@ -51,7 +51,7 @@ const Failed = styled(Passed)`
 `;
 
 const Batch = ({ onChangeTab, batchOrder = 0 }) => {
-	const batchResult = useSelector(state => state.getBatchSubmissions.success);
+	const batchResult = useSelector(state => state.execute.testSubmission);
 	const [testBatch, setTestBatch] = useState(TestBatch[batchOrder]);
 
 	useEffect(() => {
@@ -64,7 +64,7 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 		}
 	}, [batchResult]);
 
-	const resolveTest = batchResult?.length > 0 ? batchResult.map(test => ({
+	const resolvedTests = batchResult?.length > 0 ? batchResult.map(test => ({
 		statusId: test.status.id,
 		statusDescription: test.status.description,
 		compile_output: test.compile_output,
@@ -74,14 +74,14 @@ const Batch = ({ onChangeTab, batchOrder = 0 }) => {
 
 	const validTests = batchResult && batchResult.length > 0;
 	const { testSuite } = testBatch;
-	const noTestPass = validTests ? resolveTest.filter(result => result.statusId === 3).length : 0;
+	const noTestPass = validTests ? resolvedTests.filter(result => result.statusId === 3).length : 0;
 	const noTestFail = validTests ? testSuite.length - noTestPass : 0;
 
 	return (<BatchOutput data-testid="Batch-Tests">
 		{validTests && (<Title>
 			<Passed>Passed: {noTestPass}</Passed> <Failed>Failed: {noTestFail}</Failed>
 		</Title>)}
-		{resolveTest.map((result, index) => {
+		{resolvedTests.map((result, index) => {
 			const test = testSuite[index];
 
 			if ([3].includes(result.statusId)) {

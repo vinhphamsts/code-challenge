@@ -1,10 +1,10 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import InstructionAndOutput from './InstructionAndOutput/InstructionAndOutput.jsx';
 import CodeEditor from './Editor/CodeEditor';
 import TestBatch from '../data/data.json';
 import { useDispatch } from 'react-redux';
-import { resetSubmissions } from '../store/reducer.js';
+import { reset } from '../store/actions/system.js';
 
 const Container = styled.div`
   display: grid;
@@ -31,7 +31,7 @@ export const LandingPage = () => {
 				return order;
 			}
 
-			dispatch(resetSubmissions.success());
+			dispatch(reset.success());
 			return order + value;
 		});
 	}, []);

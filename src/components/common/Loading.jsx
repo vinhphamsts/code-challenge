@@ -53,7 +53,7 @@ const Circle = styled.div`
 `;
 
 export const Loading = () => {
-	const loading = useSelector(state => state.getLoading.success.value);
+	const loading = useSelector(state => state.execute.loading);
 
 	return loading ? (<Overlay>
 		<Circle>

@@ -12,3 +12,5 @@ export const SUBMISSIONS_TIMEOUT = {
 };
 
 export const CONTROL_OPTIONS = ['Instructions', 'Output', 'Tests'];
+
+export const DEFAULT_ERR_MSG = 'Something went wrong. Please try again!';
