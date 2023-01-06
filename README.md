@@ -38,7 +38,7 @@ The technology stack used in this project includes:
 ## Workflow
 1. Code execution:
     - Compose your codes in the editor
-    - Print out your code execution, i.e, `console.log(add(1, 2))` and hit the `Execution` button
+    - Print out your code execution, i.e, `console.log(add(1, 2))` and hit the `Execute` button
     - The `Output` tab comes up and shows your output
 2. Test your code
     - Compose your codes in the editor
