@@ -1,6 +1,6 @@
 import { take, call, put, delay } from 'redux-saga/effects';
 import { executeCode, getASubmission, getLoading } from '../reducer.js';
-import { createSubmissionsApi, getASubmissionApi } from '../../api/judge0.js';
+import { createSubmissionApi, getASubmissionApi } from '../../api/judge0.js';
 import { SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 
 export function* executeCodeSaga() {
@@ -11,7 +11,7 @@ export function* executeCodeSaga() {
 
 			yield put(getLoading.success(true));
 
-			const { token } = yield call(createSubmissionsApi, action.payload) || {};
+			const { token } = yield call(createSubmissionApi, action.payload) || {};
 
 			if (token) {
 				yield delay(SUBMISSIONS_TIMEOUT.SINGLE);

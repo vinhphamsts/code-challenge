@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import LanguagesDropdown from './CodeLanguages.jsx';
 import CodeEditorWindow from './CodeWindow.jsx';
 import Button from '../common/Button.jsx';
-import { executeCode, fetchLanguages, batchSubmission } from '../../store/reducer.js';
-import { CODE_LENGTH_ENABLED, COMPILE_TIMEOUT } from '../../constants/common.js';
+import { executeCode, fetchLanguages, batchSubmissions } from '../../store/reducer.js';
+import { CODE_LENGTH_ENABLED, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 import TestBatch from '../../data/data.json';
 import { generateTestBatch } from './generateTestBatch.js';
 
@@ -52,10 +52,11 @@ const CodeEditor = ({ batchOrder = 0 }) => {
 	const handleCodeChange = useCallback((code) => {
 		setCode(code);
 	}, []);
+
 	const handleExecuteCode = (evt) => {
 		evt.preventDefault();
 		const data = {
-			source_code: `${code}`, language_id: languageId, time: COMPILE_TIMEOUT,
+			source_code: `${code}`, language_id: languageId, time: SUBMISSIONS_TIMEOUT.SINGLE,
 		};
 
 		dispatch(executeCode.start(data));
@@ -65,7 +66,7 @@ const CodeEditor = ({ batchOrder = 0 }) => {
 		const data = {
 			submissions: generateTestBatch({ batch: testBatch, languageId, code }),
 		};
-		dispatch(batchSubmission.start(data));
+		dispatch(batchSubmissions.start(data));
 	};
 
 	const handleChangeLanguages = useCallback(({ languageId, name }) => {

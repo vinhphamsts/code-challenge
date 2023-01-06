@@ -4,7 +4,6 @@ export const CONTROL_TAB_INDEX = {
 	TEST: 2,
 };
 
-export const COMPILE_TIMEOUT = 2; // second
 export const CODE_LENGTH_ENABLED = 10;
 
 export const SUBMISSIONS_TIMEOUT = {

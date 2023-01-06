@@ -3,9 +3,9 @@ import { createActionSuite } from './utils.js';
 
 export const fetchLanguages = createActionSuite('fetch_languages');
 export const executeCode = createActionSuite('execute_code');
-export const batchSubmission = createActionSuite('batch_submission');
+export const batchSubmissions = createActionSuite('batch_submissions');
 export const getASubmission = createActionSuite('get_a_submission');
-export const getBatchSubmission = createActionSuite('get_batch_submission');
+export const getBatchSubmissions = createActionSuite('get_batch_submissions');
 export const getLoading = createActionSuite('get_loading');
 export const resetSubmissions = createActionSuite('reset_submissions');
 
@@ -33,7 +33,7 @@ const initialState = {
 	executionCode: {
 		success: {}, error: null,
 	},
-	batchSubmission: {
+	batchSubmissions: {
 		success: null,
 		error: null,
 	},
@@ -45,7 +45,7 @@ const initialState = {
 			},
 		}, error: null,
 	},
-	getBatchSubmission: {
+	getBatchSubmissions: {
 		success: null,
 		error: null,
 	},
@@ -68,22 +68,22 @@ const reducer = createReducer(initialState, builder => {
 		})
 		.addCase(getASubmission.error, (state, action) => {
 			state.getASubmission.error = action.payload;
-			state.batchSubmission.success = null;
+			state.batchSubmissions.success = null;
 		})
 		.addCase(getLoading.success, (state, action) => {
 			state.getLoading.success.value = action.payload;
 		})
-		.addCase(batchSubmission.success, (state, action) => {
-			state.batchSubmission.success = action.payload ?
+		.addCase(batchSubmissions.success, (state, action) => {
+			state.batchSubmissions.success = action.payload ?
 				action.payload.map(item => item.token).join(',') : '';
 			state.getASubmission.success = initialASubmission;
 		})
-		.addCase(getBatchSubmission.success, (state, action) => {
-			state.getBatchSubmission.success = action.payload?.submissions;
+		.addCase(getBatchSubmissions.success, (state, action) => {
+			state.getBatchSubmissions.success = action.payload;
 		})
 		.addCase(resetSubmissions.success, (state) => {
-			state.getBatchSubmission = initialBatchSubmission;
-			state.batchSubmission = initialBatchSubmission;
+			state.getBatchSubmissions = initialBatchSubmission;
+			state.batchSubmissions = initialBatchSubmission;
 			state.getASubmission.success = initialASubmission;
 		})
 	;

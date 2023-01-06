@@ -3,8 +3,8 @@ import reducer, {
 	executeCode,
 	fetchLanguages,
 	getASubmission,
-	getBatchSubmission,
-	batchSubmission,
+	getBatchSubmissions,
+	batchSubmissions,
 	resetSubmissions,
 } from '../reducer.js';
 import { describe, test, expect } from 'vitest';
@@ -22,7 +22,7 @@ describe('App reducer', () => {
 		executionCode: {
 			success: {}, error: null,
 		},
-		batchSubmission: {
+		batchSubmissions: {
 			success: null,
 			error: null,
 		},
@@ -35,7 +35,7 @@ describe('App reducer', () => {
 			},
 			error: null,
 		},
-		getBatchSubmission: {
+		getBatchSubmissions: {
 			success: null,
 			error: null,
 		},
@@ -131,18 +131,18 @@ describe('App reducer', () => {
 		const token2 = 'f16e686f-ed48-47d7-a2bf-d56e91d9195a';
 		const batchToken = [{ token: token1 }, { token: token2 }];
 
-		expect(reducer(initState, batchSubmission.success(batchToken))).toEqual({
+		expect(reducer(initState, batchSubmissions.success(batchToken))).toEqual({
 			...initState,
-			batchSubmission: {
+			batchSubmissions: {
 				success: `${token1},${token2}`,
 				error: null,
 			},
 			getASubmission: { ...initState.getASubmission },
 		});
 		// in case error
-		expect(reducer(initState, batchSubmission.success(null))).toEqual({
+		expect(reducer(initState, batchSubmissions.success(null))).toEqual({
 			...initState,
-			batchSubmission: {
+			batchSubmissions: {
 				success: '',
 				error: null,
 			},
@@ -168,9 +168,9 @@ describe('App reducer', () => {
 			],
 		};
 
-		expect(reducer(initState, getBatchSubmission.success(batchResult))).toEqual({
+		expect(reducer(initState, getBatchSubmissions.success(batchResult))).toEqual({
 			...initState,
-			getBatchSubmission: {
+			getBatchSubmissions: {
 				success: batchResult.submissions,
 				error: null,
 			},
