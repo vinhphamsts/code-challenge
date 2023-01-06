@@ -13,15 +13,15 @@ The project is intended to provide an online code execution system that allows d
 ## Specification
 The technology stack used in this project includes: 
 
-1. Bundle tool: **Vite**
-2. UI development: **ReactJS, Style Component**
-3. State management: **Redux, ReduxToolkit**
-4. API & Middleware: **RESTful & Redux Saga, Axios**
-5. Unit & Automation Testing: **Vitest & Cypress.io**
-6. Backend: **Judge0 (v1.13.0)** *deployed on a private cloud (Digital Ocean)*
-7. Version control: **Git, GitHub**
-8. CI/CD: **Buddy + AWS**
-9. Methodology: **Trunk Based Development**
+1. Bundle tool: `Vite`
+2. UI development: `ReactJS, Style Component`
+3. State management: `Redux, ReduxToolkit`
+4. API & Middleware: `RESTful & Redux Saga, Axios`
+5. Unit & Automation Testing: `Vitest & Cypress.io`
+6. Backend: `Judge0 (v1.13.0)` *deployed on a private cloud (Digital Ocean)*
+7. Version control: `Git, GitHub`
+8. CI/CD: `Buddy + AWS`
+9. Methodology: `Trunk Based Development`
 10. [Demo](http://code-challenge-sts.s3-website-us-west-1.amazonaws.com)
 
 ## Architecture
@@ -42,7 +42,7 @@ The technology stack used in this project includes:
     - The `Output` tab comes up and shows your output
 2. Test your code
     - Compose your codes in the editor
-    - **DO NOT** use any code to print out something in your solution, i.e, `console.log()`
+    - `DO NOT` use any code to print out something in your solution, i.e, `console.log()`
     - Hit the `Submit Test` button
     - The `Tests` tab comes up and shows your test result
 
