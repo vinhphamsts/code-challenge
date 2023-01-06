@@ -7,15 +7,10 @@ import { CONTROL_TAB_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.j
 import { ERROR_COLOR, MAIN_COLOR, PASSED_COLOR } from '../../styles/colors.js';
 import TestBatch from '../../data/data.json';
 
-const Error = styled.p`
-  color: ${ERROR_COLOR};
-  font-size: 13px;
-`;
-
-const Output = styled.p`
-  margin: 8px;
-	color: ${MAIN_COLOR};
-  font-size: 12px;
+const BatchOutput = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const Title = styled.div`
@@ -28,18 +23,23 @@ const Title = styled.div`
   border-bottom: 2px solid ${MAIN_COLOR};
 `;
 
-const Reason = styled.div`
+const Error = styled.p`
+  color: ${ERROR_COLOR};
+  font-size: 13px;
+`;
+
+const Output = styled.p`
+  margin: 8px;
+	color: ${MAIN_COLOR};
+  font-size: 12px;
+`;
+
+const Reason = styled.p`
   margin: 8px 0;
   padding: 6px 12px;
   border: 1px solid ${ERROR_COLOR};
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.4);
-`;
-
-const BatchOutput = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 `;
 
 const Passed = styled.span`
