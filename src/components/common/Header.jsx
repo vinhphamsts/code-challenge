@@ -25,7 +25,7 @@ const Brand = styled.div`
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
-	  gap: 16px;
+	  gap: 8px;
   }
 `;
 
