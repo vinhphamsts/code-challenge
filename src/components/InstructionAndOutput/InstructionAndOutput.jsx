@@ -17,14 +17,14 @@ const ControlDisplay = styled.div`
 
 const Display = styled.div`
   display: ${({ visible }) => visible ? 'block' : 'none'};
-	border: 1px solid ${MAIN_COLOR};
-	padding: 8px;
-	border-radius: 4px;
+  border: 1px solid ${MAIN_COLOR};
+  padding: 8px;
+  border-radius: 4px;
   overflow-y: auto;
-	
-	@media screen and (min-width: 768px) {
-  	height: 57vh;
-	}
+
+  @media screen and (min-width: 768px) {
+    height: 57vh;
+  }
 `;
 
 const InstructionAndOutput = ({ batchOrder = 0, onBatchChange }) => {
@@ -35,7 +35,7 @@ const InstructionAndOutput = ({ batchOrder = 0, onBatchChange }) => {
 	}, []);
 
 	useEffect(() => {
-		setControlTabIndex(CONTROL_TAB_INDEX.INSTRUCTIONS)
+		setControlTabIndex(CONTROL_TAB_INDEX.INSTRUCTIONS);
 	}, [batchOrder]);
 
 	return (

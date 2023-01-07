@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import LanguagesDropdown from './CodeLanguages.jsx';
 import CodeEditorWindow from './CodeWindow.jsx';
 import Button from '../common/Button.jsx';
-import { executeCode, fetchLanguages, batchSubmission } from '../../store/reducer.js';
-import { CODE_LENGTH_ENABLED, COMPILE_TIMEOUT } from '../../constants/common.js';
+import { getLanguages } from '../../store/actions/languages.js';
+import { codeExecution, testSubmission } from '../../store/actions/code.js';
+import { CODE_LENGTH_ENABLED, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 import TestBatch from '../../data/data.json';
-import { generateTestBatch } from './generateTestBatch.js';
+import { generateTestBatch } from './utils.js';
 
 const EditorWrapper = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ const Actions = styled.form`
 `;
 
 const CodeEditor = ({ batchOrder = 0 }) => {
-	const languages = useSelector(state => state.fetchLanguages.success);
+	const languages = useSelector(state => state.lang.languages);
 	const dispatch = useDispatch();
 	const [testBatch, setTestBatch] = useState(TestBatch[batchOrder]);
 
@@ -42,7 +43,7 @@ const CodeEditor = ({ batchOrder = 0 }) => {
 	const [code, setCode] = useState('');
 
 	useEffect(() => {
-		dispatch(fetchLanguages.start());
+		dispatch(getLanguages.start());
 	}, []);
 
 	useEffect(() => {
@@ -52,20 +53,22 @@ const CodeEditor = ({ batchOrder = 0 }) => {
 	const handleCodeChange = useCallback((code) => {
 		setCode(code);
 	}, []);
+
 	const handleExecuteCode = (evt) => {
 		evt.preventDefault();
 		const data = {
-			source_code: `${code}`, language_id: languageId, time: COMPILE_TIMEOUT,
+			source_code: `${code}`, language_id: languageId, time: SUBMISSIONS_TIMEOUT.SINGLE,
 		};
 
-		dispatch(executeCode.start(data));
+		// dispatch(executeCode.start(data));
+		dispatch(codeExecution.start(data));
 	};
 
 	const handleSubmitBatch = () => {
 		const data = {
 			submissions: generateTestBatch({ batch: testBatch, languageId, code }),
 		};
-		dispatch(batchSubmission.start(data));
+		dispatch(testSubmission.start(data));
 	};
 
 	const handleChangeLanguages = useCallback(({ languageId, name }) => {

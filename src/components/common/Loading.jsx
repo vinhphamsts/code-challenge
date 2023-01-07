@@ -44,8 +44,8 @@ const Circle = styled.div`
   background: ${MAIN_COLOR};
   border-radius: 50%;
   margin: 40px;
-  height: 43px;
-  width: 43px;
+  height: 34px;
+  width: 34px;
 
   box-shadow: 0 0 0 0 ${MAIN_COLOR};
   transform: scale(1);
@@ -53,11 +53,11 @@ const Circle = styled.div`
 `;
 
 export const Loading = () => {
-	const loading = useSelector(state => state.getLoading.success.value);
+	const loading = useSelector(state => state.execute.loading);
 
 	return loading ? (<Overlay>
 		<Circle>
-			<Image src="/code-c.png" alt="Loading ..." width={43}/>
+			<Image src="/code-c.png" alt="Loading ..." width={34}/>
 
 		</Circle>
 	</Overlay>) : null;

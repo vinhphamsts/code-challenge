@@ -1,9 +1,8 @@
-import { useEffect, memo } from 'react';
+import { memo, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { getASubmission, getLoading } from '../../store/reducer.js';
+import { useSelector } from 'react-redux';
 import { ERROR_COLOR, PASSED_COLOR } from '../../styles/colors.js';
-import { CONTROL_TAB_INDEX, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
+import { CONTROL_TAB_INDEX } from '../../constants/common.js';
 
 const Container = styled.div`
   display: flex;
@@ -22,30 +21,14 @@ const Output = styled.p`
 `;
 
 const CodeOutput = ({ onChangeTab }) => {
-	const dispatch = useDispatch();
-	const execution = useSelector(state => state.executionCode.success);
-	const aSubmissionResult = useSelector(state => {
-		return state.getASubmission
-	});
+	const codeExecutionSuccess = useSelector(state => state.execute.codeExecution);
 
-	const { status, compile_output, stderr, stdout, error } = aSubmissionResult.success;
+	const { status, compile_output, stderr, stdout, error } = codeExecutionSuccess;
+	const errorMessage = compile_output || stderr || error;
 
 	useEffect(() => {
-		let timeoutId;
-
-		if (execution.token) {
-			dispatch(getLoading.success(true));
-			timeoutId = setTimeout(() => {
-				dispatch(getASubmission.start(execution.token));
-				dispatch(getLoading.success(false));
-				onChangeTab(CONTROL_TAB_INDEX.OUTPUT);
-			}, SUBMISSIONS_TIMEOUT.SINGLE);
-		}
-
-		return () => clearTimeout(timeoutId);
-	}, [execution.token]);
-
-	const errorMessage = compile_output || stderr || error;
+		onChangeTab(CONTROL_TAB_INDEX.OUTPUT);
+	}, [codeExecutionSuccess]);
 
 	return (
 		<Container data-testid="Execution Output">

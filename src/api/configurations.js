@@ -27,5 +27,3 @@ export const createRequest = method => (url, type) => async data => {
 		.then(response => response.data)
 		.catch(e => e.response.data);
 };
-
-export default instanceAxios;
