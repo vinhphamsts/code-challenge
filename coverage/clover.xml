@@ -321,7 +321,7 @@
         <line num="41" count="1" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
       </file>
-      <file name="generateTestBatch.js" path="/Users/vinh.pham/Working/code-challenge/src/components/Editor/generateTestBatch.js">
+      <file name="utils.js" path="/Users/vinh.pham/Working/code-challenge/src/components/Editor/utils.js">
         <metrics statements="11" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="0" type="stmt"/>

@@ -261,7 +261,7 @@ import { getLanguages } from '../../store/actions/languages.js';
 import { codeExecution, testSubmission } from '../../store/actions/code.js';
 import { CODE_LENGTH_ENABLED, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 import TestBatch from '../../data/data.json';
-import { generateTestBatch } from './generateTestBatch.js';
+import { utils } from './utils.js';
 &nbsp;
 const EditorWrapper = styled.div`
   display: grid;
@@ -319,7 +319,7 @@ const CodeEditor = ({ batchOrder = 0 }) =&gt; {
 &nbsp;
 	const handleSubmitBatch = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >		const data = {</span>
-<span class="cstat-no" title="statement not covered" >			submissions: generateTestBatch({ batch: testBatch, languageId, code }),</span>
+<span class="cstat-no" title="statement not covered" >			submissions: utils({ batch: testBatch, languageId, code }),</span>
 <span class="cstat-no" title="statement not covered" >		};</span>
 <span class="cstat-no" title="statement not covered" >		dispatch(testSubmission.start(data));</span>
 <span class="cstat-no" title="statement not covered" >	};</span>

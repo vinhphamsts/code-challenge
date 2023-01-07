@@ -8,7 +8,7 @@ import { getLanguages } from '../../store/actions/languages.js';
 import { codeExecution, testSubmission } from '../../store/actions/code.js';
 import { CODE_LENGTH_ENABLED, SUBMISSIONS_TIMEOUT } from '../../constants/common.js';
 import TestBatch from '../../data/data.json';
-import { generateTestBatch } from './generateTestBatch.js';
+import { generateTestBatch } from './utils.js';
 
 const EditorWrapper = styled.div`
   display: grid;
